@@ -23,6 +23,8 @@ import org.spongycastle.crypto.StreamCipher;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.spongycastle.util.encoders.Hex;
 
+import com.orwell.stego.Steganography;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

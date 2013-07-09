@@ -1,4 +1,4 @@
-package com.tinfoilsms.test;
+package com.orwell.test;
 
 import static org.junit.Assert.*;
 
@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
 
-import com.tinfoilsms.crypto.ECKey;
-import com.tinfoilsms.crypto.ECKeyParam;
+import com.orwell.crypto.ECKey;
+import com.orwell.crypto.ECKeyParam;
 
 public class ECKeyTest
 {

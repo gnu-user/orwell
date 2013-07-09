@@ -1,4 +1,4 @@
-package com.tinfoilsms.test;
+package com.orwell.test;
 
 import static org.junit.Assert.*;
 
@@ -20,13 +20,13 @@ import org.spongycastle.crypto.params.ECPublicKeyParameters;
 import org.spongycastle.crypto.params.Nonce;
 import org.spongycastle.util.encoders.Hex;
 
-import com.tinfoilsms.crypto.APrioriInfo;
-import com.tinfoilsms.crypto.ECEngine;
-import com.tinfoilsms.crypto.ECKey;
-import com.tinfoilsms.crypto.ECKeyParam;
-import com.tinfoilsms.csprng.ISAACRandomGenerator;
-import com.tinfoilsms.csprng.SDFGenerator;
-import com.tinfoilsms.csprng.SDFParameters;
+import com.orwell.crypto.APrioriInfo;
+import com.orwell.crypto.ECEngine;
+import com.orwell.crypto.ECKey;
+import com.orwell.crypto.ECKeyParam;
+import com.orwell.csprng.ISAACRandomGenerator;
+import com.orwell.csprng.SDFGenerator;
+import com.orwell.csprng.SDFParameters;
 
 @RunWith(Corollaries.class)
 public class ECEngineTest

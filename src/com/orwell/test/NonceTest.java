@@ -1,4 +1,4 @@
-package com.tinfoilsms.test;
+package com.orwell.test;
 
 import static org.junit.Assert.*;
 
@@ -18,9 +18,9 @@ import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
 
-import com.tinfoilsms.csprng.ISAACRandomGenerator;
-import com.tinfoilsms.csprng.SDFGenerator;
-import com.tinfoilsms.csprng.SDFParameters;
+import com.orwell.csprng.ISAACRandomGenerator;
+import com.orwell.csprng.SDFGenerator;
+import com.orwell.csprng.SDFParameters;
 
 @RunWith(Corollaries.class)
 public class NonceTest

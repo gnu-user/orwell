@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tinfoilsms.test;
+package com.orwell.test;
 
 import static org.junit.Assert.*;
 
@@ -14,11 +14,11 @@ import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
 
-import com.tinfoilsms.crypto.APrioriInfo;
-import com.tinfoilsms.crypto.ECGKeyExchange;
-import com.tinfoilsms.crypto.ECGKeyUtil;
-import com.tinfoilsms.crypto.ECKey;
-import com.tinfoilsms.crypto.ECKeyParam;
+import com.orwell.crypto.APrioriInfo;
+import com.orwell.crypto.ECGKeyExchange;
+import com.orwell.crypto.ECGKeyUtil;
+import com.orwell.crypto.ECKey;
+import com.orwell.crypto.ECKeyParam;
 
 /**
  * TODO: There could be a lot more unit tests added for different

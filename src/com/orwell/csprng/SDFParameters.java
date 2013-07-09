@@ -14,31 +14,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.tinfoilsms.crypto;
+package com.orwell.csprng;
 
 import org.spongycastle.crypto.DataLengthException;
-
+import org.spongycastle.crypto.DerivationParameters;
 
  /**
- * Information communicated by both parties involved in the key exchange before
- * the actual key exchange takes place (a priori), contains the a priori shared 
- * information S1 & S2 that users have agreed upon before initiating the exchange
+ * Seed Derivative Function (SDF) parameter, takes the shared information 
+ * S1 & S2 as constructor arguments which are used as parameters for 
+ * deriving the shared seed
  */
-public final class APrioriInfo
+public class SDFParameters implements DerivationParameters
 {
     private final byte[]  S1;
     private final byte[]  S2;
 	
 	/**
-	 * Defines the two parameters for constructor which are the a priori
-	 * shared information S1 & S2, the values cannot be empty
+	 * Defines the two parameters for the SDF which are the shared
+	 * information S1 & S2, the values cannot be empty
 	 * 
 	 * @param S1 Shared information S1
 	 * @param S2 Shared information S2
 	 * 
 	 * @throws DataLengthException if shared information is empty
 	 */
-	public APrioriInfo(String S1, String S2)
+	public SDFParameters(String S1, String S2)
 			throws DataLengthException
 	{
 		if (S1.length() == 0 || S2.length() == 0)
@@ -50,8 +50,9 @@ public final class APrioriInfo
 		this.S2 = S2.getBytes();
 	}
 
+
 	/**
-	 * Gets the a priori shared information S1
+	 * Gets the shared information S1
 	 * @return shared information, S1
 	 */
     public byte[] getS1()
@@ -60,7 +61,7 @@ public final class APrioriInfo
     }
     
 	/**
-	 * Gets the a priori shared information S2
+	 * Gets the shared information S2
 	 * @return shared information, S2
 	 */
     public byte[] getS2()

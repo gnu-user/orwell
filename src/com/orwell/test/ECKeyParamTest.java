@@ -1,4 +1,4 @@
-package com.tinfoilsms.test;
+package com.orwell.test;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.spongycastle.jce.ECNamedCurveTable;
 import org.spongycastle.jce.spec.ECParameterSpec;
 
-import com.tinfoilsms.crypto.ECKeyParam;
+import com.orwell.crypto.ECKeyParam;
 
 public class ECKeyParamTest
 {

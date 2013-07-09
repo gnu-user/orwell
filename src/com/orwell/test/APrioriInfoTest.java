@@ -1,4 +1,4 @@
-package com.tinfoilsms.test;
+package com.orwell.test;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.spongycastle.crypto.DataLengthException;
 
-import com.tinfoilsms.crypto.APrioriInfo;
+import com.orwell.crypto.APrioriInfo;
 
 public class APrioriInfoTest
 {

@@ -29,7 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.tinfoilsms.util;
+package com.orwell.util;
 
 import java.io.FilterOutputStream;
 import java.io.IOException;
