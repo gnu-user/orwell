@@ -1,4 +1,3 @@
-package com.orwell.util;
 /* Copyright (c) 2012 the authors listed at the following URL, and/or
 the authors of referenced articles or incorporated external code:
 http://en.literateprograms.org/Miller-Rabin_primality_test_(Java)?action=history&offset=20111215044139
@@ -24,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Retrieved from: http://en.literateprograms.org/Miller-Rabin_primality_test_(Java)?oldid=17585
 */
+package com.orwell.util;
 
 public abstract class MillerRabin32
 {
