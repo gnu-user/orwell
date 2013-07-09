@@ -1,3 +1,4 @@
+package com.orwell.util;
 /** 
  * Copyright (C) 2012 Tinfoilhat
  * 

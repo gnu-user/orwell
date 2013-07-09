@@ -1,3 +1,4 @@
+package com.orwell.util;
 /** 
  * Copyright (C) 2012 Tinfoilhat
  * 
@@ -20,6 +21,8 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import org.spongycastle.crypto.DataLengthException;
+
+import com.orwell.stego.DictionaryBinarySearch;
 
 /**
  * Provides the dictionary and inverse dictionary utility functions such as for

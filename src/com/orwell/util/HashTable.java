@@ -1,3 +1,4 @@
+package com.orwell.util;
 /** 
  * Copyright (C) 2012 Tinfoilhat
  * 
@@ -16,6 +17,7 @@
  */
 
 import java.math.BigInteger;
+
 
 /**
  * Provides the basic functionality for generating hash tables efficiently

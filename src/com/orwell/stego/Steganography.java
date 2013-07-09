@@ -1,4 +1,3 @@
-package com.orwell.stego;
 /** 
  * Copyright (C) 2012 Tinfoilhat
  * 
@@ -15,10 +14,8 @@ package com.orwell.stego;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package com.orwell.stego;
 
-import DictionaryUtil;
-import FastQuickSort;
-import HashTable;
 import ISAACRandomGenerator;
 
 import java.nio.ByteBuffer;
@@ -33,6 +30,10 @@ import java.util.regex.Pattern;
 
 import org.spongycastle.crypto.DataLengthException;
 import org.spongycastle.crypto.prng.RandomGenerator;
+
+import com.orwell.util.DictionaryUtil;
+import com.orwell.util.FastQuickSort;
+import com.orwell.util.HashTable;
 
 /**
  * Provides the steganography operations for Tinfoil-SMS, currently supports

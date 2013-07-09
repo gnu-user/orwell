@@ -24,6 +24,8 @@ import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.spongycastle.util.encoders.Hex;
 
 import com.orwell.stego.Steganography;
+import com.orwell.util.FastQuickSort;
+import com.orwell.util.HashTable;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
