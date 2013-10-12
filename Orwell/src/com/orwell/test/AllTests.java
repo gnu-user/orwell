@@ -28,7 +28,8 @@ import org.junit.runners.Suite.SuiteClasses;
         ECGKeyExchangeTest.class,
         ECGKeyUtilTest.class, 
         ECKeyParamTest.class, 
-        ECKeyTest.class, 
+        ECKeyTest.class,
+        FastQuickSortTest.class, 
         NonceTest.class })
 public class AllTests
 {
