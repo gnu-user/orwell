@@ -31,6 +31,7 @@ import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
 import org.spongycastle.crypto.CipherParameters;
+import org.spongycastle.crypto.DataLengthException;
 import org.spongycastle.crypto.InvalidCipherTextException;
 import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.engines.ISAACEngine;
@@ -316,5 +317,25 @@ public class ECEngineTest
             System.out.println(key + " <==> " + encryptedMsgs.get(key));
             ++i;
         }
-	}		
+	}
+	
+	/**
+     * Test for a message in the case where the size of the message to decrypt
+     * is less than the size of the MAC. This is usually the case where a message 
+	 * has been corrupted or not encrypted.
+     *
+	 * @throws InvalidCipherTextException 
+     */
+	@Test(expected=InvalidCipherTextException.class)
+    public void smallerThanMAC() throws InvalidCipherTextException
+    {
+        /* Create a sample of a corrupted message that is smaller than MAC */
+	    String corruptedMsg = "!#$%9&'(~@^";
+	    
+        /*
+         * Verify that attempting to decrypt a message smaller than the MAC
+         * is properly handled and throws an InvalidCipherTextException exception.
+         */
+        byte[] decBlock = bobEngine.processBlock(corruptedMsg.getBytes());
+    }
 }

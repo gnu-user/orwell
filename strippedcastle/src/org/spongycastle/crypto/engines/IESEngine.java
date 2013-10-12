@@ -140,6 +140,12 @@ public class IESEngine
         KDFParameters   kParam = new KDFParameters(z, param.getDerivationV());
         int             macKeySize = param.getMacKeySize();
 
+        /* Ensure that the length of the input is greater than the MAC in bytes */
+        if (inLen <= (macKeySize / 8))
+        {
+            throw new InvalidCipherTextException("Length of input must be greater than the MAC");
+        }
+        
         kdf.init(kParam);
 
         inLen -= mac.getMacSize();
