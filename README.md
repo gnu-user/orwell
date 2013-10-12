@@ -19,6 +19,16 @@ as a basis for much of the functionality provided, with enhancements made to imp
 security of the block ciphers used.
 
 
+Security
+------------------------------
+
+Orwell uses Elliptic Curve Cryptography as the basis for the public key exchange. The
+key exchange protocol uses a unique signing scheme based on the use of *a priori*
+information to facilitate signing and verifying the keys, rather than depending on a 
+centralized Certificate Authority.
+
+
+
 Copyright (Really Copyleft)
 ---------------------------
 
