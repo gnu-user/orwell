@@ -26,6 +26,9 @@ import org.spongycastle.crypto.StreamCipher;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.spongycastle.util.encoders.Hex;
 
+import com.orwell.csprng.ISAACRandomGenerator;
+import com.orwell.csprng.SDFGenerator;
+import com.orwell.csprng.SDFParameters;
 import com.orwell.stego.Steganography;
 import com.orwell.util.FastQuickSort;
 import com.orwell.util.HashTable;
@@ -169,11 +172,11 @@ public class SteganographyActivity
 		 * Simulate two separate users generating a sequence of random numbers using 
 		 * a shared seed and the ISAAC stream cipher as the PRNG
 		 */
-		ISAACRandomGenerator isaac1 = new ISAACRandomGenerator();
-		ISAACRandomGenerator isaac2 = new ISAACRandomGenerator();
+		ISAACRandomGenerator isaac1 = new ISAACRandomGenerator(new ISAACEngine());
+		ISAACRandomGenerator isaac2 = new ISAACRandomGenerator(new ISAACEngine());
 		
-		isaac1.init(new ISAACEngine(), shared_seed);
-		isaac2.init(new ISAACEngine(), shared_seed);
+		isaac1.init(shared_seed);
+		isaac2.init(shared_seed);
 		
 		/*
 		 * Generate two separate sequences of random data and verify the two sequences are identical
@@ -474,11 +477,11 @@ public class SteganographyActivity
 		System.out.println("SEED: " + new String(Hex.encode(seed)));
 		System.out.println("HEX LENGTH: " + new String(Hex.encode(seed)).length());
 		
-		ISAACRandomGenerator isaac1 = new ISAACRandomGenerator();
-		ISAACRandomGenerator isaac2 = new ISAACRandomGenerator();
+		ISAACRandomGenerator isaac1 = new ISAACRandomGenerator(new ISAACEngine());
+		ISAACRandomGenerator isaac2 = new ISAACRandomGenerator(new ISAACEngine());
 		
-		isaac1.init(new ISAACEngine(), seed);
-		isaac2.init(new ISAACEngine(), seed);
+		isaac1.init(seed);
+		isaac2.init(seed);
 		
 		//byte[] test = Hex.encode(seed);
 		

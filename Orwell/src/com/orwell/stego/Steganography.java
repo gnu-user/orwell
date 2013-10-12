@@ -19,7 +19,7 @@
  */
 package com.orwell.stego;
 
-import ISAACRandomGenerator;
+import com.orwell.csprng.ISAACRandomGenerator;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
