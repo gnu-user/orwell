@@ -23,7 +23,7 @@ import org.spongycastle.crypto.DataLengthException;
 import org.spongycastle.crypto.prng.RandomGenerator;
 import org.spongycastle.crypto.MaxBytesExceededException;
 
-import com.tinfoilsms.csprng.ISAACRandomGenerator;
+import com.orwell.csprng.ISAACRandomGenerator;
 
 
 /**
