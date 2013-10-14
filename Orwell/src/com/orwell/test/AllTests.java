@@ -30,6 +30,7 @@ import org.junit.runners.Suite.SuiteClasses;
         ECKeyParamTest.class, 
         ECKeyTest.class,
         FastQuickSortTest.class, 
+        ISAACRandomGeneratorTest.class, 
         NonceTest.class })
 public class AllTests
 {
