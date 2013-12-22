@@ -1,5 +1,23 @@
+/** 
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.orwell.stego;
-
 
 import java.text.Collator;
 import java.util.regex.Matcher;
@@ -18,14 +36,12 @@ import org.spongycastle.crypto.DataLengthException;
  */
 public abstract class DictionaryBinarySearch
 {
-	
 	/**
 	 * The number of steps to take when performing the divergent search,
 	 * if you find that values which exist are still not being found, try
 	 * increasing the number of steps
 	 */
 	private static final int DIVERGENT_SEARCH_STEPS = 100; 
-
 	
 	/**
 	 * Searches for the value specified and returns the index where the first 
@@ -45,7 +61,6 @@ public abstract class DictionaryBinarySearch
 	 * 
 	 * TODO Add support to check if the data provided is not sorted and throw an exception
 	 * if it isn't 
-	 * 
 	 */
 	public static int search(String value, String[] sortedData, Collator c)
 			throws IllegalArgumentException
@@ -65,7 +80,6 @@ public abstract class DictionaryBinarySearch
 		return multiLangSearch(value, sortedData, c);
 	}
 	
-	
 	/**
 	 * Searches for the value specified and returns the index where the first 
 	 * instance of the value provided is found in the sorted array of data.
@@ -84,8 +98,7 @@ public abstract class DictionaryBinarySearch
 	 * @throws IllegalArgumentException If the data is not sorted or the value is null
 	 * 
 	 * TODO Add support to check if the data provided is not sorted and throw an exception
-	 * if it isn't 
-	 * 
+	 * if it isn't
 	 */
 	public static int search(String value, String[] sortedData, Pattern p, Collator c)
 			throws IllegalArgumentException
@@ -103,8 +116,7 @@ public abstract class DictionaryBinarySearch
 		}		
 		
 		return multiLangSearch(value, sortedData, p, c);
-	}
-	
+	}	
 	
 	/**
 	 * @see #search(String, String[], Collator)
@@ -121,7 +133,6 @@ public abstract class DictionaryBinarySearch
 	{
 		return -1;
 	}
-	
 	
 	/**
 	 * @see #search(String, String[], Pattern, Collator)
@@ -175,9 +186,7 @@ public abstract class DictionaryBinarySearch
 		return divergentSearch(value, sortedData, idx, p, c);
 	}
 	
-	
 	/**
-	 * 
 	 * Performs a divergent search which searches for the value in opposite
 	 * directions from the index given, the number of steps in each direction
 	 * to take is determined by the constant DIVERGENT_SEARCH_STEPS.
@@ -201,9 +210,7 @@ public abstract class DictionaryBinarySearch
 		return -1;
 	}
 	
-	
 	/**
-	 * 
 	 * Performs a divergent search which searches for the value in opposite
 	 * directions from the index given, the number of steps in each direction
 	 * to take is determined by the constant DIVERGENT_SEARCH_STEPS.

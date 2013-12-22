@@ -62,8 +62,9 @@ import com.orwell.util.HashTable;
  */
 public abstract class Steganography
 {
-	
-	// Minimum size of the dictionary
+	/**
+	 * The Minimum size of the dictionary 
+	 */
 	private static final int MIN_DICT_SIZE = 65537; 
 	
 	/**
@@ -72,7 +73,7 @@ public abstract class Steganography
 	 * recommended that Collator is used with the master dictionary language locale
 	 * specified.
 	 * 
-	 * NOTE: dictionary and inverseDictionary must contain 65,537 or more words and 
+	 * @note The dictionary and inverseDictionary must contain 65,537 or more words and 
 	 * must be the same size and half the size of the master dictionary, this is due 
 	 * to performance issues inherent in generating hash tables when the bucket of 
 	 * values is depleted past 70%
@@ -183,7 +184,6 @@ public abstract class Steganography
 		FastQuickSort.sort(inverseDictionary);
 	}
 	
-	
 	/**
 	 * Obfuscates the content by generating a stegotext using unique words from the dictionary
 	 * provided. Currently this only provides a minimal level of security-through-obscurity 
@@ -255,7 +255,6 @@ public abstract class Steganography
 		return stegotext;
 	}
 	
-	
 	/**
 	 * De-obfuscates the stegotext back into the original content by using the unique
 	 * words INVERSE dictionary provided. Currently this only provides a minimal level 
@@ -300,6 +299,4 @@ public abstract class Steganography
 		}
 		return origContent;
 	}
-
-	
 }
