@@ -1,5 +1,8 @@
 /** 
- * Copyright (C) 2013 Tinfoilhat
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,6 +41,7 @@ public class ECKey
 	
 	/**
 	 * ECKey object constructor
+	 * 
 	 * @param param ECDomainParameters for creating the elliptic curve keypair
 	 */
 	public ECKey(ECDomainParameters param)
@@ -46,7 +50,6 @@ public class ECKey
 		this.ECKeyPairGen = new ECKeyPairGenerator();
 		this.keyGenParam = new ECKeyGenerationParameters(param, new SecureRandom());
 	}
-
 
 	/**
 	 * Wrapper for AsymmetricCipherKeyPairGenerator init() and generateKeyPair()
@@ -57,10 +60,10 @@ public class ECKey
 		ECKeyPairGen.init(keyGenParam);
 		ECKeyPair = ECKeyPairGen.generateKeyPair();
 	}
-	
 	 
 	/**
 	 * Wrapper for AsymmetricCipherKeyPair getPrivate()
+	 * 
 	 * @return The private key parameters
 	 */
 	public CipherParameters getPrivate()
@@ -68,16 +71,15 @@ public class ECKey
 		return ECKeyPair.getPrivate();
 	}
 	
-	
 	/**
 	 * Wrapper for AsymmetricCipherKeyPair getPublic()
+	 * 
 	 * @return The public key parameters
 	 */
 	public CipherParameters getPublic()
 	{
 		return ECKeyPair.getPublic();
 	}
-	
 	
 	/**
 	 * Wrapper for ECKeyGenerationParameters getDomainParameters

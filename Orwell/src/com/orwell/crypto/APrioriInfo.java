@@ -21,7 +21,6 @@ package com.orwell.crypto;
 
 import org.spongycastle.crypto.DataLengthException;
 
-
  /**
  * Information communicated by both parties involved in the key exchange before
  * the actual key exchange takes place (a priori), contains the a priori shared 
@@ -29,8 +28,8 @@ import org.spongycastle.crypto.DataLengthException;
  */
 public final class APrioriInfo
 {
-    private final byte[]  S1;
-    private final byte[]  S2;
+    private final byte[] S1;
+    private final byte[] S2;
 	
 	/**
 	 * Defines the two parameters for constructor which are the a priori

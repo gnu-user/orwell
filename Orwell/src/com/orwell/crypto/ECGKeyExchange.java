@@ -50,7 +50,7 @@ public abstract class ECGKeyExchange
      * 
      * @throws DataLengthException if shared information is empty
      */
-    static public byte[] signPubKey(Digest digest, 
+    public static byte[] signPubKey(Digest digest, 
     								byte[] encodedPubKey, 
 									APrioriInfo sharedInfo, 
 									boolean isInitiator)
@@ -90,7 +90,6 @@ public abstract class ECGKeyExchange
 		return signedPubKey;
     }
     
-    
     /** 
      * A method which takes a signed public key and verifies the public key 
      * using an HMAC with the shared information S1 + S2 if initiating the key 
@@ -105,7 +104,7 @@ public abstract class ECGKeyExchange
      * 
      * @throws DataLengthException if shared information is empty
      */
-    static public boolean verifyPubKey(Digest digest, 
+    public static boolean verifyPubKey(Digest digest, 
     								   byte[] signedPubKey, 
     								   APrioriInfo sharedInfo,
     								   boolean isInitiator)
@@ -161,7 +160,6 @@ public abstract class ECGKeyExchange
 		return signatureEquals(calcSignature, origSignature);
     }
 
-    
 	/**
 	 * Verifies if two signatures are exactly equal using a byte-level
 	 * comparison of the values. Usually used to verify the signature 

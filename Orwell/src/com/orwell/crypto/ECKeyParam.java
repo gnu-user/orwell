@@ -1,5 +1,8 @@
 /** 
- * Copyright (C) 2013 Tinfoilhat
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +29,6 @@ import org.spongycastle.jce.spec.ECParameterSpec;
 import org.spongycastle.jce.ECNamedCurveTable;
 import org.spongycastle.math.ec.ECCurve;
 import org.spongycastle.math.ec.ECPoint;
-
 
 /**
  * A class which acts as a wrapper for the Elliptic Curve specifications
@@ -111,6 +113,7 @@ public class ECKeyParam implements CipherParameters, KeySpec
 	
 	/**
 	 * Wrapper for getCurve()
+	 * 
 	 * @return the curve along which the base point lies.
 	 */
 	public ECCurve getCurve()
@@ -120,6 +123,7 @@ public class ECKeyParam implements CipherParameters, KeySpec
 	
 	/**
 	 * Wrapper for getG()
+	 * 
 	 * @return the base point we are using for these domain parameters.
 	 */
 	public ECPoint getG()
@@ -129,6 +133,7 @@ public class ECKeyParam implements CipherParameters, KeySpec
 	
 	/**
 	 * Wrapper for getH()
+	 * 
 	 * @return the cofactor H to the order of G.
 	 */
 	public BigInteger getH()
@@ -138,6 +143,7 @@ public class ECKeyParam implements CipherParameters, KeySpec
 	
 	/**
 	 * Wrapper for getN()
+	 * 
 	 * @return the order N of G
 	 */
 	public BigInteger getN()
@@ -147,6 +153,7 @@ public class ECKeyParam implements CipherParameters, KeySpec
 	
 	/**
 	 * Wrapper for getSeed()
+	 * 
 	 * @return the seed used to generate this curve (if available).
 	 */
 	public byte[] getSeed()

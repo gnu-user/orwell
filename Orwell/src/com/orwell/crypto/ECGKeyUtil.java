@@ -1,5 +1,8 @@
 /** 
- * Copyright (C) 2013 Tinfoilhat
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,15 +39,16 @@ import org.spongycastle.crypto.params.ECPublicKeyParameters;
 public abstract class ECGKeyUtil
 {
     /**
-     * encodePubKey A function which takes an ECC public key parameter object
+     * A method which takes an ECC public key parameter object
      * and returns the ASN.1 encoded X and Y values for the public key Q.
      * 
      * @param keyParam The Elliptic Curve key parameter which contains the curve
      * specifications and domain parameters
      * @param pubKey an ECC public key parameter which implements CipherParameters
+     * 
      * @return A byte array of the ASN.1 encoded public key Q
      */
-    static public byte[] encodePubKey(ECKeyParam keyParam, CipherParameters pubKey)
+    public static byte[] encodePubKey(ECKeyParam keyParam, CipherParameters pubKey)
     		throws InvalidParameterException
     {
     	if (pubKey instanceof ECPublicKeyParameters)
@@ -68,9 +72,8 @@ public abstract class ECGKeyUtil
     	}
     }
     
-    
     /**
-     * encodeBase64PubKey A wrapper function for encodePubKey() which takes an ECC 
+     * A wrapper method for encodePubKey() which takes an ECC 
      * public key parameter object and returns the ASN.1 encoded X and Y values
      * for the public key Q that is then encoded in base64 encoding for proper
      * storage and transmission in textual form.
@@ -80,26 +83,28 @@ public abstract class ECGKeyUtil
      * @param keyParam The Elliptic Curve key parameter which contains the curve
      * specifications and domain parameters
      * @param pubKey an ECC public key parameter which implements CipherParameters
+     * 
      * @return The ASN.1 encoded public key Q as a BASE64 encoded byte array
      */
-    static public byte[] encodeBase64PubKey(ECKeyParam keyParam, CipherParameters pubKey)
+    public static byte[] encodeBase64PubKey(ECKeyParam keyParam, CipherParameters pubKey)
     		throws InvalidParameterException
     {
     	return Base64.encode(encodePubKey(keyParam, pubKey), Base64.DEFAULT);
     }
     
-    
     /**
-     * encodePriKey A function which takes an ECC private key parameter object
+     * A method which takes an ECC private key parameter object
      * and returns the private key D BigInteger value as a byte array
      * 
      * @param keyParam The Elliptic Curve key parameter which contains the curve
      * specifications and domain parameters
      * @param priKey an ECC private key parameter object which implements CipherParameters
+     * 
      * @return A byte array of the private key D BigInteger value
+     * 
      * @throws InvalidParameterException
      */
-    static public byte[] encodePriKey(ECKeyParam keyParam, CipherParameters priKey)
+    public static byte[] encodePriKey(ECKeyParam keyParam, CipherParameters priKey)
     		throws InvalidParameterException
 	{
     	if (priKey instanceof ECPrivateKeyParameters)
@@ -113,19 +118,20 @@ public abstract class ECGKeyUtil
     	}
 	}
     
-    
     /**
-     * encodeBase64PriKey A wrapper function which takes an ECC private key parameter
+     * A wrapper function which takes an ECC private key parameter
      * object and returns the private key D BigInteger value that is encoded as base64
      * for proper storage and transmission in textual form.
      * 
      * @param keyParam The Elliptic Curve key parameter which contains the curve
      * specifications and domain parameters
      * @param priKey an ECC private key parameter object which implements CipherParameters
+     * 
      * @return The base64 encoded private key D BigInteger value
+     * 
      * @throws InvalidParameterException
      */
-    static public byte[] encodeBase64PriKey(ECKeyParam keyParam, CipherParameters priKey)
+    public static byte[] encodeBase64PriKey(ECKeyParam keyParam, CipherParameters priKey)
     		throws InvalidParameterException
 	{
     		/* Return the private key D BigInteger value encoded as base64 */
@@ -134,17 +140,17 @@ public abstract class ECGKeyUtil
     				Base64.DEFAULT);
 	}
     
-    
     /**
-     * decodePubKey A function which takes an ASN.1 encoded ECC public key Q
+     * A method which takes an ASN.1 encoded ECC public key Q
      * and returns an ECPublicKeyParameters object for the public key Q. 
      * 
      * @param keyParam The Elliptic Curve key parameter which contains the curve
      * specifications and domain parameters
      * @param encodedPubkey A byte array of the ASN.1 encoded public key Q
+     * 
      * @return An ECC public key parameter for Q, ECPublicKeyParametersimplements
      */
-    static public ECPublicKeyParameters decodePubKey(ECKeyParam keyParam, 
+    public static ECPublicKeyParameters decodePubKey(ECKeyParam keyParam, 
     												 byte[] encodedPubKey)
     {
 		/*
@@ -157,26 +163,25 @@ public abstract class ECGKeyUtil
     			keyParam.getECDomainParam());
     }
     
-    
     /**
-     * decodeBase64PubKey A wrapper function for decodePubKey which takes an 
+     * A wrapper function for decodePubKey which takes an 
      * ASN.1 encoded ECC public key Q that was then encoded as base64
      * and returns an ECPublicKeyParameters object for the public key Q. 
      * 
      * @param keyParam The Elliptic Curve key parameter which contains the curve
      * specifications and domain parameters
      * @param encodedPubkey A byte array of the ASN.1 encoded public key Q
+     * 
      * @return An ECC public key parameter for Q, ECPublicKeyParametersimplements
      */
-    static public ECPublicKeyParameters decodeBase64PubKey(	ECKeyParam keyParam, 
-    														byte[] encodedPubKey)
+    public static ECPublicKeyParameters decodeBase64PubKey(ECKeyParam keyParam, 
+    													   byte[] encodedPubKey)
     {
     	return decodePubKey(keyParam, Base64.decode(encodedPubKey, Base64.DEFAULT));
     }
     
-    
     /**
-     * decodeSignedPubKey A function which takes an ASN.1 encoded ECC public key Q
+     * A method which takes an ASN.1 encoded ECC public key Q
      * that is signed using the Elliptic Curve Gillett (ECG) Exchange key exchange
      * and returns an ECPublicKeyParameters object for the public key Q.
      * 
@@ -184,11 +189,12 @@ public abstract class ECGKeyUtil
      * specifications and domain parameters
      * @param digest The digest function used to originally sign the key such as SHA256
      * @param signedPubkey A byte array of the ASN.1 encoded public key Q that is signed
+     * 
      * @return An ECC public key parameter for Q, ECPublicKeyParametersimplements
      */
-    static public ECPublicKeyParameters decodeSignedPubKey(ECKeyParam keyParam, 
-													Digest digest, 
-													byte[] signedPubKey)
+    public static ECPublicKeyParameters decodeSignedPubKey(ECKeyParam keyParam, 
+													       Digest digest, 
+													       byte[] signedPubKey)
     {
     	/*
     	 * Retrieve the ASN.1 encoded ECC public key Q from the contents of signed public key  
@@ -206,10 +212,9 @@ public abstract class ECGKeyUtil
     			keyParam.getCurve().decodePoint(encodedPubKey), 	// Q
     			keyParam.getECDomainParam());
     }
-    
-    
+        
     /**
-     * decodeBase64SignedPubKey A wrapper function for decodeSignedPubKey which 
+     * A wrapper method for decodeSignedPubKey which 
      * takes an ASN.1 encoded ECC public key Q that is signed using the Elliptic
      * Curve Gillett (ECG) Exchange key exchange and that was then encoded as base64
      * and returns an ECPublicKeyParameters object for the public key Q.
@@ -219,19 +224,19 @@ public abstract class ECGKeyUtil
      * @param digest The digest function used to originally sign the key such as SHA256
      * @param signedPubkey A byte array of the ASN.1 encoded public key Q, encoded as
      * BASE64, that is signed
+     * 
      * @return An ECC public key parameter for Q, ECPublicKeyParametersimplements
      */
-    static public ECPublicKeyParameters decodeBase64SignedPubKey(ECKeyParam keyParam, 
-    													  Digest digest, 
-														  byte[] signedPubKey)
+    public static ECPublicKeyParameters decodeBase64SignedPubKey(ECKeyParam keyParam, 
+            													 Digest digest, 
+        														 byte[] signedPubKey)
     {
     	return decodeSignedPubKey(keyParam, digest, Base64.decode(signedPubKey, Base64.DEFAULT));
     	
     }
-   
     
     /**
-     * decodePriKey A function which takes an ECC private key parameter object and 
+     * A method which takes an ECC private key parameter object and 
      * returns an ECPrivateKeyParameters object for the private key D BigInteger 
      * value.
      * 
@@ -240,17 +245,16 @@ public abstract class ECGKeyUtil
      * @param priKey a byte array of the private key D BigInteger value
      * @return an ECPrivateKeyParameters object for the private key D BigInteger value
      */
-    static public ECPrivateKeyParameters decodePriKey(ECKeyParam keyParam,
-    												 byte[] encodedPriKey)
+    public static ECPrivateKeyParameters decodePriKey(ECKeyParam keyParam,
+    												  byte[] encodedPriKey)
     {
     	return new ECPrivateKeyParameters(
     			new BigInteger(encodedPriKey),		// D
     			keyParam.getECDomainParam());
     }
-    
-    
+        
     /**
-     * decodeBase64PriKey A function wrapper function for decodePriKey which takes
+     * A method wrapper function for decodePriKey which takes
      * a base64 encoded ECC private key parameter object and returns an 
      * ECPrivateKeyParameters object for the private key D BigInteger value.
      * 
@@ -259,8 +263,8 @@ public abstract class ECGKeyUtil
      * @param priKey a base64 encoded byte array of the private key D BigInteger value
      * @return an ECPrivateKeyParameters object for the private key D BigInteger value
      */
-    static public ECPrivateKeyParameters decodeBase64PriKey(ECKeyParam keyParam,
-    												 byte[] encodedPriKey)
+    public static ECPrivateKeyParameters decodeBase64PriKey(ECKeyParam keyParam,
+    												        byte[] encodedPriKey)
     {
     	return decodePriKey(keyParam, Base64.decode(encodedPriKey, Base64.DEFAULT));
     }
