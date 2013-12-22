@@ -24,7 +24,6 @@ import org.spongycastle.crypto.DerivationFunction;
 import org.spongycastle.crypto.DerivationParameters;
 import org.spongycastle.crypto.Digest;
 
-
 /**
  * Seed Derivative Function (SDF) generator, derives a seed value to be used
  * with a PRNG given the SDF parameters, Digest, and the number of iterations
@@ -33,11 +32,11 @@ import org.spongycastle.crypto.Digest;
  */
 public class SDFGenerator implements DerivationFunction
 {
-	private Digest  digest;
-	private static final int DEFAULT_ITERATIONS = 12;	// Default number of Digest iterations
+	private Digest digest;
+	private static final int DEFAULT_ITERATIONS = 32;	// Default number of Digest iterations
 	private int iterations;
-	private byte[]  S1;
-	private byte[]  S2;
+	private byte[] S1;
+	private byte[] S2;
 	
 	/**
 	 * Define the digest to use for the SDF generator as well as the number
@@ -72,7 +71,6 @@ public class SDFGenerator implements DerivationFunction
 		this.digest = digest;
 		this.iterations = DEFAULT_ITERATIONS;
 	}
-	
 
 	/* 
 	 * Initialize the SDF generator given the SDF parameters, the derivation
@@ -95,7 +93,6 @@ public class SDFGenerator implements DerivationFunction
 			throw new IllegalArgumentException("Derivation parameters MUST be an instance of SDFParameters!");
 		}
 	}
-
 	
     /**
      * Fill the length bytes specified of the output buffer with bytes generated from
@@ -111,11 +108,8 @@ public class SDFGenerator implements DerivationFunction
      * @throws IllegalArgumentException if the size of the request will cause an overflow.
      * @throws DataLengthException if the out buffer is too small.
      */
-    public int generateBytes(
-        byte[]  out,
-        int     outOff,
-        int     len)
-        throws DataLengthException, IllegalArgumentException
+    public int generateBytes(byte[] out, int outOff, int len)
+            throws DataLengthException, IllegalArgumentException
     {
     	/*
     	 * Exception if the requested output seed length is greater than the output size provided
@@ -179,7 +173,6 @@ public class SDFGenerator implements DerivationFunction
 
         return len;
     }
-
     
 	/**
 	 * Returns the digest being used by the SDF
@@ -189,6 +182,5 @@ public class SDFGenerator implements DerivationFunction
 	public Digest getDigest()
 	{
 		return this.digest;
-	}
-    
+	}   
 }

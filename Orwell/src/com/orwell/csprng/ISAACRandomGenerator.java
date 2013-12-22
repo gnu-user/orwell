@@ -28,7 +28,6 @@ import org.spongycastle.crypto.engines.ISAACEngine;
 import org.spongycastle.crypto.params.KeyParameter;
 import org.spongycastle.crypto.prng.RandomGenerator;
 
-
 /**
  * ISAAC random number generator that generates random numbers using the
  * ISAAC stream cipher. Currently only ISAAC is supported, ISAAC+ support
@@ -38,7 +37,6 @@ public class ISAACRandomGenerator implements RandomGenerator
 {
 	private ISAACEngine engine;
 	private byte[] seed;
-	
 	
 	/**
 	 * Default constructor, at the moment only ISAAC engine is supported, 
@@ -58,7 +56,6 @@ public class ISAACRandomGenerator implements RandomGenerator
 		
 		this.engine = (ISAACEngine)engine;
 	}
-	
 	
 	/**
 	 * Initialize the ISAAC random generator with an initial seed value. The seed 
@@ -86,7 +83,6 @@ public class ISAACRandomGenerator implements RandomGenerator
 		// Initialize the stream cipher engine
 		engine.init(true, new KeyParameter(seed));
 	}
-
 	
 	/* 
 	 * Add more seed material to the generator, this re-initializes the stream cipher
@@ -120,7 +116,6 @@ public class ISAACRandomGenerator implements RandomGenerator
 		this.engine.reset();
 		this.engine.init(true, new KeyParameter(newSeed));
 	}
-
 	
 	/* 
 	 * Add more seed material to the generator, this re-initializes the stream cipher
@@ -159,13 +154,12 @@ public class ISAACRandomGenerator implements RandomGenerator
 		this.engine.reset();
 		this.engine.init(true, new KeyParameter(newSeed));
 	}
-
 	
 	/**
 	 * Generates a random data using ISAAC stream cipher and populates
 	 * the byte array provided with the random number.
 	 * 
-	 * NOTE: For maximum entropy it is recommended to frequently add additional
+	 * @note For maximum entropy it is recommended to frequently add additional
 	 * random seed data, other random or even hardware random sources are ideal.
 	 * 
 	 * @param bytes The output byte array to populate with the random number
@@ -177,13 +171,12 @@ public class ISAACRandomGenerator implements RandomGenerator
 		// Generate the random number and store in output
 		this.engine.processBytes(in, 0, in.length, bytes, 0);
 	}
-
 	
 	/**
 	 * Generates a random data using ISAAC stream cipher and populates
 	 * the byte array provided with the random number.
 	 * 
-	 * NOTE: For maximum entropy it is recommended to frequently add additional
+	 * @note For maximum entropy it is recommended to frequently add additional
 	 * random seed data, other random or even hardware random sources are ideal.
 	 * 
 	 * @param bytes The output byte array to populate with the random number
@@ -197,7 +190,6 @@ public class ISAACRandomGenerator implements RandomGenerator
 		// Generate the random number and store in output
 		this.engine.processBytes(in, 0, len, bytes, start);
 	}
-	
 	
 	/**
 	 * Since most PRNG are used for NUMBERS it seems prudent to add an additional
@@ -217,8 +209,7 @@ public class ISAACRandomGenerator implements RandomGenerator
 		
 		return new BigInteger(out);
 	}
-	
-	
+		
 	/**
 	 * Since most PRNG are used for NUMBERS it seems prudent to add an additional
 	 * function to return randomly generated data as int instead of having to
@@ -237,8 +228,7 @@ public class ISAACRandomGenerator implements RandomGenerator
 		
 		return new BigInteger(out).intValue();
 	}
-	
-	
+		
 	/**
 	 * Resets the CSPRNG, after resetting the CSPRNG you must either re-initialize
 	 * it or add additional seed material.

@@ -29,8 +29,8 @@ import org.spongycastle.crypto.DerivationParameters;
  */
 public class SDFParameters implements DerivationParameters
 {
-    private final byte[]  S1;
-    private final byte[]  S2;
+    private final byte[] S1;
+    private final byte[] S2;
 	
 	/**
 	 * Defines the two parameters for the SDF which are the shared
@@ -52,7 +52,6 @@ public class SDFParameters implements DerivationParameters
 		this.S1 = S1.getBytes();
 		this.S2 = S2.getBytes();
 	}
-
 
 	/**
 	 * Gets the shared information S1
