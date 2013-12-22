@@ -21,6 +21,8 @@ package com.orwell.crypto;
 
 import org.spongycastle.crypto.DataLengthException;
 import org.spongycastle.crypto.Digest;
+import org.spongycastle.crypto.macs.HMac;
+import org.spongycastle.crypto.params.KeyParameter;
 
 /**
  * The Elliptic Curve Gillett (ECG) Exchange, provides support for signing
@@ -31,26 +33,20 @@ import org.spongycastle.crypto.Digest;
  * In the event that the users initiate a key exchange without any shared
  * information the default shared information S1 = "initiator" and 
  * S2 = "recipient" are used.
- * 
- * TODO: SOMEHOW IMPROVE THE SECURITY OF THE KEY EXCHANGE USING A SOURCE OF
- * HIGHER ENTROPY OR USING THE SHARED INFORMATION TO CREATE A ONE-TIME PAD
  */
 public abstract class ECGKeyExchange
 {
-    /* 
-     * signPubKey A function which takes an ASN.1 encoded public key Q and 
-     * signs the public key using the shared information S1 + S2 if initiating the key
-     * exchange or S2 + S1 if responding to a key exchange.
-     * 
-     * The function returns the signed public key which is a byte array containing the hash
-     * of the public key concatenated with the public key.
+    /** 
+     * A method which takes an ASN.1 encoded public key Q and signs the 
+     * public key using an HMAC with the shared information S1 + S2 if 
+     * initiating the key exchange or S2 + S1 if responding to a key exchange.
      * 
      * @param digest The digest function to use for signing the key such as SHA256
      * @param encodedPubkey A byte array of the ASN.1 encoded public key Q
      * @param sharedInfo The shared information, S1 and S2
      * @param isInitiator True if initiating a key exchange, false if responding to a key exchange
      * 
-     * @return A byte array containing public key concatenated with the hash of the public key
+     * @return A byte array containing the public key concatenated with the HMAC
      * 
      * @throws DataLengthException if shared information is empty
      */
@@ -64,16 +60,12 @@ public abstract class ECGKeyExchange
     	{
     		throw new DataLengthException("The shared information S1 and S2 cannot be null/empty!");
     	}
-
-    	/*
-    	 * The shared information to use for signing the public key
-    	 * The digest input which is the public key concatenated with S1 + S2
-    	 * or S2 + S1 Signed public key byte array to hold the public key and hash 
-    	 */
-    	byte[] S = new byte[sharedInfo.getS1().length + sharedInfo.getS2().length];
-    	byte[] digestInput;
-    	byte[] signedPubKey = new byte[encodedPubKey.length + digest.getDigestSize()];
-    	System.arraycopy(encodedPubKey, 0, signedPubKey, 0, encodedPubKey.length);
+    	
+        /* The shared information to use for signing the public key */
+        byte[] S = new byte[sharedInfo.getS1().length + sharedInfo.getS2().length];
+    	HMac hmac = new HMac(digest);
+        byte[] signedPubKey = new byte[encodedPubKey.length + hmac.getMacSize()];
+        System.arraycopy(encodedPubKey, 0, signedPubKey, 0, encodedPubKey.length);
     	
     	/*
     	 * Set the shared information as S1 + S2 if initiating key exchange, S2 + S1 if
@@ -85,39 +77,24 @@ public abstract class ECGKeyExchange
     		System.arraycopy(sharedInfo.getS2(), 0, S, sharedInfo.getS1().length, sharedInfo.getS2().length);
 		}
     	else
-    	{ 
-    		/* Use S2 + S1 for the recipient */	
+    	{
     		System.arraycopy(sharedInfo.getS2(), 0, S, 0, sharedInfo.getS2().length);
     		System.arraycopy(sharedInfo.getS1(), 0, S, sharedInfo.getS2().length, sharedInfo.getS1().length);
 		}
-    	
-    	/*
-    	 * Calculate the signature of the encoded public key concatenated with
-    	 * shared information, S 
-    	 */
-		digestInput = new byte[encodedPubKey.length + S.length];
-		System.arraycopy(encodedPubKey, 0, digestInput, 0, encodedPubKey.length);
-		System.arraycopy(S, 0, digestInput, encodedPubKey.length, S.length);
-		
-		/*
-		 * Sign the public key, concatenate the signature to public key
-		 */
-		digest.update(digestInput, 0, digestInput.length);
-		digest.doFinal(signedPubKey, encodedPubKey.length);
-		digest.reset();
-		
+
+        /* Initializes and generate the signature for the public key */
+        hmac.init(new KeyParameter(S));
+        hmac.update(encodedPubKey, 0, encodedPubKey.length);
+        hmac.doFinal(signedPubKey, encodedPubKey.length);
+
 		return signedPubKey;
     }
     
     
-    /* 
-     * verify_publickey A function which takes a signed public key and verifies
-     * the public key using the shared information S1 + S2 if initiating the key
+    /** 
+     * A method which takes a signed public key and verifies the public key 
+     * using an HMAC with the shared information S1 + S2 if initiating the key 
      * exchange or S2 + S1 if responding to a key exchange.
-     * 
-     * The function returns true if the signature of the signed public key received
-     * matches the calculated signature of the public key concatenated with S1 + S2
-     * or S2 + S1.
      * 
      * @param digest the digest function to use for signing the key such as SHA256
      * @param signedPubKey byte array containing public key concatenated with the hash of the public key 
@@ -145,48 +122,37 @@ public abstract class ECGKeyExchange
     	    throw new DataLengthException("Invalid signed public key, it's smaller than signature!");
 	    }
     	
-    	/*
-    	 * The shared information to use for verifying the public key
-    	 * The digest input which is the public key concatenated with S1 + S2
-    	 * or S2 + S1.
-    	 */
-    	byte[] S = new byte[sharedInfo.getS1().length + sharedInfo.getS2().length];
-    	byte[] digestInput;
-    	byte[] origSignature = new byte[digest.getDigestSize()];
-    	byte[] calcSignature = new byte[digest.getDigestSize()];
-    	System.arraycopy(signedPubKey, signedPubKey.length - digest.getDigestSize(), 
-    			origSignature, 0, digest.getDigestSize());
+        /* The shared information to use for signing the public key */
+        byte[] S = new byte[sharedInfo.getS1().length + sharedInfo.getS2().length];
+        HMac hmac = new HMac(digest);
+    	byte[] digestInput = new byte[signedPubKey.length - hmac.getMacSize()];
+    	byte[] origSignature = new byte[hmac.getMacSize()];
+    	byte[] calcSignature = new byte[hmac.getMacSize()];
     	
-    	/*
-    	 * Set the shared information as S2 + S1 if the initiator of the key exchange
-    	 * or S1 + S2 if responding to a key exchange
-    	 */
+    	/* Copy the contents of the public key and the original signature */
+    	System.arraycopy(signedPubKey, 0, digestInput, 0, signedPubKey.length - hmac.getMacSize());
+    	System.arraycopy(signedPubKey, signedPubKey.length - hmac.getMacSize(), 
+    			origSignature, 0, hmac.getMacSize());
+    	
+        /*
+         * Set the shared information as S1 + S2 if initiating key exchange, S2 + S1 if
+         * responding to key exchange
+         */
     	if (isInitiator)
     	{
     		System.arraycopy(sharedInfo.getS2(), 0, S, 0, sharedInfo.getS2().length);
     		System.arraycopy(sharedInfo.getS1(), 0, S, sharedInfo.getS2().length, sharedInfo.getS1().length);
 		}
     	else
-    	{ 
-    		/* Use S1 + S2 for the recipient */	
+    	{
     		System.arraycopy(sharedInfo.getS1(), 0, S, 0, sharedInfo.getS1().length);
     		System.arraycopy(sharedInfo.getS2(), 0, S, sharedInfo.getS1().length, sharedInfo.getS2().length);
-		}
-    	
-    	/*
-    	 * Calculate the signature of the encoded public key concatenated with
-    	 * shared information, S 
-    	 */
-		digestInput = new byte[signedPubKey.length - digest.getDigestSize() + S.length];
-		System.arraycopy(signedPubKey, 0, digestInput, 0, signedPubKey.length - digest.getDigestSize());
-		System.arraycopy(S, 0, digestInput, signedPubKey.length - digest.getDigestSize(), S.length);
-		
-		/*
-		 * Calculated the signature of the public key
-		 */
-		digest.update(digestInput, 0, digestInput.length);
-		digest.doFinal(calcSignature, 0);
-		digest.reset();
+		}   	    	
+	
+		/* Calculated the signature of the public key */
+        hmac.init(new KeyParameter(S));
+        hmac.update(digestInput, 0, digestInput.length);
+        hmac.doFinal(calcSignature, 0);
 		
 		/*
 		 * Verify that the calculated signature matches the signature of the
