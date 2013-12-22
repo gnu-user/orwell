@@ -31,7 +31,6 @@ import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
 import org.spongycastle.crypto.CipherParameters;
-import org.spongycastle.crypto.DataLengthException;
 import org.spongycastle.crypto.InvalidCipherTextException;
 import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.engines.ISAACEngine;
@@ -166,7 +165,6 @@ public class ECEngineTest
 		expBlockSizes.add(exp1ByteMsg);
 	}
 
-
 	/**
 	 * Encyrption/Decryption test that verifies that a message containing the ASCII 
 	 * character set (keyboard characters only) can be encrypted and decrypted back
@@ -237,9 +235,7 @@ public class ECEngineTest
 			Assert.fail("Error occurred encrypting/decrypting the message");
 			e.printStackTrace();
 		}
-		
 	}
-	
 	
 	/**
 	 * Test which verifies that the block cipher used is creating uniquely encrypted 
@@ -336,6 +332,6 @@ public class ECEngineTest
          * Verify that attempting to decrypt a message smaller than the MAC
          * is properly handled and throws an InvalidCipherTextException exception.
          */
-        byte[] decBlock = bobEngine.processBlock(corruptedMsg.getBytes());
+        bobEngine.processBlock(corruptedMsg.getBytes());
     }
 }

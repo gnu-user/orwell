@@ -19,31 +19,21 @@
  */
 package com.orwell.test;
 
-import static org.junit.Assert.*;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.math.BigInteger;
 import java.text.CollationKey;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.spongycastle.crypto.engines.ISAACEngine;
-import org.spongycastle.util.encoders.Hex;
 
-import com.orwell.csprng.ISAACRandomGenerator;
 import com.orwell.util.FastQuickSort;
-
 
 public class FastQuickSortTest
 {
@@ -57,7 +47,6 @@ public class FastQuickSortTest
     private static Integer[] unsortedNumbers;
     private static String[] unsortedStrings;
     private static CollationKey[] unsortedStringsKey;
-    
     
     /**
      * Function which quickly reads the lines from the file into an 
@@ -99,7 +88,6 @@ public class FastQuickSortTest
         return fileLines;
     }
     
-    
     @Before
     public void setUp() throws IOException
     {
@@ -139,8 +127,7 @@ public class FastQuickSortTest
          {
              unsortedStringsKey[i] = strictCollator.getCollationKey(unsortedStrings[i]);
          }
-    }
-    
+    }  
     
     /**
      * Tests the FastQuickSort implementation by verifying that it properly 
@@ -195,7 +182,6 @@ public class FastQuickSortTest
         System.out.println("Total time to sort numerical data: " + (endTime-startTime) + " milliseconds");
     }
     
-    
     /**
      * Function which tests the FastQuickSort implementation by verifying that
      * it properly sorts a collection of strings.
@@ -203,7 +189,7 @@ public class FastQuickSortTest
      * Test method for {@link com.orwell.util.FastQuickSort#sort(T[], java.util.Comparator)}.
      */
     @Test
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void randomStringSortTest() throws Exception
     {
         boolean sequenceMatch = true;
@@ -218,13 +204,11 @@ public class FastQuickSortTest
         // Sort the strings with quicksort
         FastQuickSort.sort(unsortedStrings, (Comparator)strictCollator);
         
-        endTime = System.currentTimeMillis();
-        
+        endTime = System.currentTimeMillis();  
         
         /*
          * Verify that the string sequence is actually ordered with a simple linear comparison
          */
-
         for (int i  = 0; i < unsortedStrings.length - 1; ++i)
         {
             /*
@@ -250,8 +234,7 @@ public class FastQuickSortTest
         }
         
         System.out.println("Total time to sort STRING data: " + (endTime-startTime) + " milliseconds");
-    }
-    
+    }  
     
     /**
      * Function which tests the FastQuickSort implementation by verifying that
@@ -260,7 +243,6 @@ public class FastQuickSortTest
      * Test method for {@link com.orwell.util.FastQuickSort#sort(T[], java.util.Comparator)}.
      */
     @Test
-    @SuppressWarnings("unchecked")
     public void randomKeysSortTest() throws Exception
     {
         boolean sequenceMatch = true;

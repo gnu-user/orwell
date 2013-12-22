@@ -39,7 +39,6 @@ import com.orwell.crypto.ECKeyParam;
 /**
  * TODO: There could be a lot more unit tests added for different
  * cases/scenarios
- *
  */
 @RunWith(Corollaries.class)
 public class ECGKeyExchangeTest
@@ -123,7 +122,6 @@ public class ECGKeyExchangeTest
 		System.out.println(", Y = " + alicePubKey.getQ().getY().toBigInteger());
 	}
 	
-	
 	/**
 	 * A test which verifies that the initiator receives the signed public key
 	 * from the recipient correctly and that the public key received matches the
@@ -167,7 +165,6 @@ public class ECGKeyExchangeTest
 	
 	}
 
-
 	/**
 	 * Test which verifies that an exception is thrown when the a priori shared information
 	 * S1 and S2 is not specified (empty)
@@ -187,8 +184,7 @@ public class ECGKeyExchangeTest
 																tempEncodedPubKey, 
 																priorInfo, 
 																true);		// Recipient	
-	}
-	
+	}	
 	
 	/**
 	 * "Man in the middle attack" test version 1, where an attacker intercepts Alice's key
@@ -245,7 +241,6 @@ public class ECGKeyExchangeTest
 						secureSharedInfo,    // The secure shared info alice and bob used
 						false));	         // Recipient
 	}
-	
 	
 	/**
 	 * "Man in the middle attack" test version 2, where an attacker intercepts Alice's key

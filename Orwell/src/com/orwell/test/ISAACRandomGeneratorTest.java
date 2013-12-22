@@ -19,8 +19,6 @@
  */
 package com.orwell.test;
 
-import static org.junit.Assert.*;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +41,9 @@ public class ISAACRandomGeneratorTest
  
     /* Seed for the CSPRNG */
     private static byte[] shared_seed = new byte[32];
-    private static byte[] shared_seed2 = new byte[32];
     
     private static ISAACRandomGenerator isaac1;
     private static ISAACRandomGenerator isaac2;
-    
     
     /**
      * @throws java.lang.Exception
@@ -97,7 +93,6 @@ public class ISAACRandomGeneratorTest
         {
             randomSequence2.add(isaac2.nextBigInteger());
         }
-
         
         /* Verify that the two sequences are equal */
         Assert.assertEquals(randomSequence1, randomSequence2);

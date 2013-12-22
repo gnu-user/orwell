@@ -52,7 +52,6 @@ public class APrioriInfoTest
 		assertTrue(expectedS2.equals(new String(priorInfo.getS2())));
 	}
 	
-	
 	/**
 	 * Test that it throws an exception if no shared info S1 & S2 provided
 	 */
@@ -61,7 +60,6 @@ public class APrioriInfoTest
 	{
 		priorInfo = new APrioriInfo("", "");
 	}
-	
 	
 	/**
 	 * Test that it throws an exception if only one shared info S1/S2 provided

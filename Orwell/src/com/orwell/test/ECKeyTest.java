@@ -51,7 +51,6 @@ public class ECKeyTest
 		expPriKey = (ECPrivateKeyParameters) expKey.getPrivate();
 		
 	}
-
 	
 	/**
 	 * Test that multiple subsequent elliptic curve keypairs created using the
@@ -85,5 +84,4 @@ public class ECKeyTest
 			assertFalse(expPriKey.getD().equals(priKey.getD()));
 		}
 	}
-
 }

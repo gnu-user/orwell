@@ -43,8 +43,6 @@ public class ECGKeyUtilTest
 	private ECKey expKey;
 	private ECPublicKeyParameters expPubKey;
 	private ECPrivateKeyParameters expPriKey;
-	private byte[] expEncodedPubKey;
-	private byte[] expEncodedPriKey;
 	
 	@Before
 	public void setUp() throws Exception
@@ -60,8 +58,7 @@ public class ECGKeyUtilTest
 		expPubKey = (ECPublicKeyParameters) expKey.getPublic();
 		expPriKey = (ECPrivateKeyParameters) expKey.getPrivate();
 		
-	}
-	
+	}	
 
 	/**
 	 * Test that encoding a public key as ASN.1 for transmission and then decoding
@@ -84,7 +81,6 @@ public class ECGKeyUtilTest
 		System.out.println(", Y = " + pubKey.getQ().getY().toBigInteger());
 		
 	}
-
 	
 	/**
 	 * Test that encoding a public key as ASN.1 which is then further encoded as base64 
@@ -108,8 +104,7 @@ public class ECGKeyUtilTest
 		System.out.println(", Y = " + expPubKey.getQ().getY().toBigInteger());
 		System.out.print("PubKey: \tX = " + pubKey.getQ().getX().toBigInteger());
 		System.out.println(", Y = " + pubKey.getQ().getY().toBigInteger());
-	}
-	
+	}	
 	
 	/**
 	 * Test that encoding a private key as ASN.1 and then decoding it back into 
@@ -135,9 +130,8 @@ public class ECGKeyUtilTest
 	@Test(expected=InvalidParameterException.class)
 	public void encodePriKeyAsPubKey()
 	{
-		byte[] temp = ECGKeyUtil.encodePubKey(param, expPriKey);
-	}
-	
+		ECGKeyUtil.encodePubKey(param, expPriKey);
+	}	
 	
 	/**
 	 * Test that verifies that an exception is thrown if an encode function is 
@@ -146,6 +140,6 @@ public class ECGKeyUtilTest
 	@Test(expected=InvalidParameterException.class)
 	public void encodePubKeyAsPriKey()
 	{
-		byte[] temp = ECGKeyUtil.encodePriKey(param, expPubKey);
+		ECGKeyUtil.encodePriKey(param, expPubKey);
 	}
 }

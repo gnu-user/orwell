@@ -1,5 +1,8 @@
-/** 
- * Copyright (C) 2013 Jonathan Gillett, Joseph Heron
+/**
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

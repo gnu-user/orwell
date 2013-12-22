@@ -21,10 +21,8 @@ package com.orwell.test;
 
 import static org.junit.Assert.*;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.engines.ISAACEngine;
@@ -57,9 +55,6 @@ public class NonceTest
 	
 	private Nonce aliceNonce;
 	private Nonce bobNonce;
-	
-	
-	private byte[] expLastNonce;
 
 	@Before
 	public void setUp() throws Exception
@@ -93,7 +88,6 @@ public class NonceTest
 		bobNonce = new Nonce(bobCSPRNG);
 	}
 	
-	
 	/**
 	 * Basic test which verifies that alice and bob are able to generate
 	 * the same seeds given that they have the same S1 & S2 parameters
@@ -114,7 +108,6 @@ public class NonceTest
 		/* Verify alice and bob have same seeds */
 		assertTrue(Arrays.equals(aliceSeed, bobSeed));
 	}
-
 	
 	/**
 	 * Test that alice and bob are able to generate the same sequence of nonces given
@@ -156,7 +149,6 @@ public class NonceTest
 			assertTrue(Arrays.equals(aliceNonceSequence.get(i), bobNonceSequence.get(i)));
 		}	
 	}
-	
 	
 	/**
 	 * Test that the nonce generator can be restored to a previous state and can correctly
@@ -207,5 +199,4 @@ public class NonceTest
             assertTrue(Arrays.equals(aliceNonceSequence.get(500 + i), restoredNonceSequence.get(i)));
         }
     }
-
 }

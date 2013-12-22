@@ -1,5 +1,8 @@
-/** 
- * Copyright (C) 2013 Jonathan Gillett, Joseph Heron
+/**
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +31,6 @@ import org.spongycastle.util.encoders.Hex;
 
 import com.orwell.util.Ascii85;
 
-
 @RunWith(Corollaries.class)
 public class Ascii85Test
 {
@@ -46,7 +48,6 @@ public class Ascii85Test
 
     private static final byte[] encrypted = Hex.decode("bdf866d92817d30746a1ed5a39c0d6fe63f65fa89b9a251f6fd66205b4e23e8924f4a6");
     
-
     /**
      * Test method for {@link com.orwell.util.Ascii85#encode(byte[])}.
      */
@@ -58,7 +59,6 @@ public class Ascii85Test
         
         assertTrue(Arrays.equals(encoded.getBytes(), Ascii85.encode(message.getBytes())));
     }
-
     
     /**
      * Test method for {@link com.orwell.util.Ascii85#encodeToString(byte[])}.
@@ -71,7 +71,6 @@ public class Ascii85Test
         
         assertEquals(encoded, Ascii85.encodeToString(message.getBytes()));
     }
-
     
     /**
      * Test method for {@link com.orwell.util.Ascii85#decode(byte[])}.
@@ -87,7 +86,6 @@ public class Ascii85Test
         
         assertTrue(Arrays.equals(message.getBytes(), Ascii85.decode(encodedBytes)));
     }
-
     
     /**
      * Test method for {@link com.orwell.util.Ascii85#decode(java.lang.String)}.
@@ -102,8 +100,7 @@ public class Ascii85Test
         System.out.println(new String(Ascii85.decode(encodedBytes)));
         
         assertTrue(Arrays.equals(message.getBytes(), Ascii85.decode(encodedBytes)));
-    }
-    
+    }   
     
     /**
      * Test which tests the Ascii85 encode/decode methods using a byte array of 

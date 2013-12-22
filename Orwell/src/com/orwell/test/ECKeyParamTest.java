@@ -58,7 +58,6 @@ public class ECKeyParamTest
 		assertTrue(expectedCurve.getN().equals(keyParam.getN()));
 	}
 	
-	
 	/**
 	 * Test that an exception is thrown if an invalid curve name is provided
 	 */
