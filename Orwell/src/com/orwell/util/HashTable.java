@@ -21,7 +21,6 @@ package com.orwell.util;
 
 import java.math.BigInteger;
 
-
 /**
  * Provides the basic functionality for generating hash tables efficiently
  * using double hashing
@@ -34,14 +33,13 @@ public abstract class HashTable
 	 */
 	private static final int CONSTANT_INTERVAL = 5;
 	
-	
 	/**
 	 * Returns the initial probe value for generating the hash table given the
 	 * key
 	 * 
-	 * NOTE: The size of the bucket being probed should be a prime number
+	 * @note The size of the bucket being probed should be a prime number
 	 * to ensure that the modulus for the probe and constant interval
-	 * are co-prime
+	 * are co-prime.
 	 * 
 	 * @param key The key to be hashed
 	 * @param bucketSize The size of the bucket(s) being probed, should
@@ -53,7 +51,22 @@ public abstract class HashTable
 	{
 		// Avoid negative values as java does negative modulus wrong... fucking hack
 		return (key < 0) ? (bucketSize - (Math.abs(key) % bucketSize)) : (key % bucketSize);
-	}
+	}	
+	
+	/**
+     * Returns the initial probe value for generating the hash table given the
+     * key
+     * 
+     * @note The size of the bucket being probed should be a prime number
+     * to ensure that the modulus for the probe and constant interval
+     * are co-prime.
+     * 
+     * @param key The key to be hashed
+     * @param bucketSize The size of the bucket(s) being probed, should
+     * be prime number to ensure maximum efficiency
+     * 
+     * @return Returns a probe
+     */
 	public static BigInteger getProbe(BigInteger key, int bucketSize)
 	{
 		return key.mod(BigInteger.valueOf(bucketSize));
@@ -68,13 +81,16 @@ public abstract class HashTable
 		return (key < 0) ? (CONSTANT_INTERVAL - (((key % CONSTANT_INTERVAL) + CONSTANT_INTERVAL) % CONSTANT_INTERVAL))
 				: (CONSTANT_INTERVAL - (key % CONSTANT_INTERVAL));
 	}
+	
+	/**
+     * Returns the interval for incrementing the probe
+     */
 	public static BigInteger getInterval(BigInteger key)
 	{
 		// One-liner... fucking hack
 		return BigInteger.valueOf(CONSTANT_INTERVAL).subtract(key.mod(BigInteger.valueOf(CONSTANT_INTERVAL)));
 	}
-	
-	
+		
 	/**
 	 * Returns the nearest co-prime value for the size of the bucket(s), this
 	 * is due to a fact of number theory where the number of collisions is
@@ -85,10 +101,10 @@ public abstract class HashTable
 	 * @see http://stackoverflow.com/questions/1145217/why-should-hash-functions-use-a-prime-number-modulus
 	 * @see http://mathworld.wolfram.com/RelativelyPrime.html
 	 * 
-	 * NOTE: If the two bucket is already co-prime with the constant interval
+	 * @note If the two bucket is already co-prime with the constant interval
 	 * then the size of the bucket is returned.
 	 * 
-	 * NOTE: By using the nearest prime value of the bucket to ensure that it
+	 * @note By using the nearest prime value of the bucket to ensure that it
 	 * is co-prime the number of values selected is less than that of the
 	 * original bucket.
 	 * 

@@ -89,8 +89,7 @@ public abstract class DictionaryUtil
 		
 		return hexValue;
 	}
-	
-	
+		
 	/**
 	 * Simple function which returns a hexadecimal string with a minimum fixed
 	 * width given a value to convert to hex.
@@ -120,8 +119,7 @@ public abstract class DictionaryUtil
 		
 		return leadingZeros + Integer.toHexString(value).toUpperCase();
 	}
-	
-	
+		
 	/**
 	 * Simple utility function which takes a hex string and returns a byte
 	 * array containing the hex values.

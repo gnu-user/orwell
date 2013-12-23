@@ -1,5 +1,8 @@
 /** 
- * Copyright (C) 2013 Jonathan Gillett, Joseph Heron
+ * Orwell -- A security library for the pathologically paranoid
+ *
+ * Copyright (C) 2013, Jonathan Gillett
+ * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +25,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-
 /**
  * Provides support for encoding and decoding using the ASCII85 (Base85) encoding
  * scheme, which encodes date using radix-85 to encode data as 85 of the possible
@@ -36,8 +38,7 @@ import java.util.ArrayList;
 public abstract class Ascii85
 {
     public static final String CHARSET = "ascii";
-    
-    
+        
     /**
      * Encodes input data in bytes into Ascii85 encoded data, and
      * returns the encoded data in bytes. The Ascii85 information can
@@ -61,11 +62,24 @@ public abstract class Ascii85
         {
             e.printStackTrace();
         }
+        finally
+        {
+            if (ascii85 != null)
+            {
+                try
+                {
+                    ascii85.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
 
         return removeIdentifiers(buffer.toByteArray());
     }
-    
-    
+        
     /**
      * Encodes input data in bytes into Ascii85 encoded data, and
      * returns the encoded data in bytes. The Ascii85 information can
@@ -90,6 +104,20 @@ public abstract class Ascii85
         {
             e.printStackTrace();
         }
+        finally
+        {
+            if (ascii85 != null)
+            {
+                try
+                {
+                    ascii85.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
         
         try
         {   
@@ -102,8 +130,7 @@ public abstract class Ascii85
         
         return output;
     }
-    
-    
+        
     /**
      * Decodes the Ascii85 encoded input into bytes, and returns the 
      * original data in bytes.
@@ -131,6 +158,20 @@ public abstract class Ascii85
         {
             e.printStackTrace();
         }
+        finally
+        {
+            if (ascii85 != null)
+            {
+                try
+                {
+                    ascii85.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
         
         /* Convert the Ascii85 Byte representation to byte */
         byte[] output = new byte[bytes.size()];
@@ -141,8 +182,7 @@ public abstract class Ascii85
         
         return output;
     }
-    
-    
+        
     /**
      * Decodes the Ascii85 encoded input as a String, and returns the 
      * original data in bytes.
@@ -182,6 +222,20 @@ public abstract class Ascii85
         {
             e.printStackTrace();
         }
+        finally
+        {
+            if (ascii85 != null)
+            {
+                try
+                {
+                    ascii85.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
         
         /* Convert the Ascii85 Byte representation to byte */
         byte[] output = new byte[bytes.size()];
@@ -192,8 +246,7 @@ public abstract class Ascii85
         
         return output;
     }
-    
-    
+        
     /**
      * Adds back the redundant <~ and ~>, which are part of the Ascii85
      * encoding scheme so that it can be properly decoded.
@@ -213,22 +266,7 @@ public abstract class Ascii85
 
         return output;
     }
-    
-    
-    /**
-     * Adds back the redundant <~ and ~>, which are part of the Ascii85
-     * encoding scheme so that it can be properly decoded.
-     * 
-     * @param input The Ascii85 input to add the redundant encoding to
-     * @return The input with the redundant encoding added back
-     * @throws UnsupportedEncodingException 
-     *
-    private static String addIdentifiers(String input) throws UnsupportedEncodingException
-    {
-        return new String(addIdentifiers(input.getBytes(CHARSET)));  
-    }*/
-    
-    
+        
     /**
      * Removes the redundant <~ and ~>, which are part of the Ascii85
      * encoding scheme, I know this breaks the standard, but to hell with
@@ -244,8 +282,7 @@ public abstract class Ascii85
         System.arraycopy(input, 2, output, 0, input.length - 4);
         return output;
     }
-    
-    
+        
     /**
      * Removes the redundant <~ and ~>, which are part of the Ascii85
      * encoding scheme, I know this breaks the standard, but to hell with

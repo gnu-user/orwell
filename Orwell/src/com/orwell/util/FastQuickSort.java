@@ -19,7 +19,6 @@
  */
 package com.orwell.util;
 
-import java.lang.reflect.Array;
 import java.text.Collator;
 import java.util.Comparator;
 
@@ -35,10 +34,6 @@ public abstract class FastQuickSort
 	 * method for selecting the pivot value to avoid the N^2 worst-case scenario.
 	 * Optimization idea came from the article on wikipedia, implementation is
 	 * based on "Algorithms" and "Algorithms in C++" books by Robert Sedgewick
-	 * 
-	 * NOTE: CURRENTLY SUPPORTS GENERICS FOR ARRAYS OF OBJECTS THAT IMPLEMENT
-	 * COMPARABLE. PRIMITIVE TYPES ARE NOT SUPPORTED AS IT IS IMPOSSIBLE USING
-	 * GENERICS
 	 * 
 	 * @see http://en.wikipedia.org/wiki/Quicksort
 	 * @see http://stackoverflow.com/questions/2071929/generics-and-sorting-in-java
@@ -56,10 +51,6 @@ public abstract class FastQuickSort
 	 * method for selecting the pivot value to avoid the N^2 worst-case scenario.
 	 * Optimization idea came from the article on wikipedia, implementation is
 	 * based on "Algorithms" and "Algorithms in C++" books by Robert Sedgewick
-	 * 
-	 * NOTE: CURRENTLY SUPPORTS GENERICS FOR ARRAYS OF OBJECTS THAT IMPLEMENT
-	 * COMPARABLE. PRIMITIVE TYPES ARE NOT SUPPORTED AS IT IS IMPOSSIBLE USING
-	 * GENERICS
 	 * 
 	 * @see http://en.wikipedia.org/wiki/Quicksort
 	 * @see http://stackoverflow.com/questions/2071929/generics-and-sorting-in-java
@@ -79,17 +70,12 @@ public abstract class FastQuickSort
 		
 		quickSort(array, c, 0, array.length - 1);
 	}
-	
-	
+		
 	/**
 	 * An optimized implementation of the quickSort which uses the median-of-three
 	 * method for selecting the pivot value to avoid the N^2 worst-case scenario.
 	 * Optimization idea came from the article on wikipedia, implementation is
 	 * based on "Algorithms" and "Algorithms in C++" books by Robert Sedgewick
-	 * 
-	 * NOTE: CURRENTLY SUPPORTS GENERICS FOR ARRAYS OF OBJECTS THAT IMPLEMENT
-	 * COMPARABLE. PRIMITIVE TYPES ARE NOT SUPPORTED AS IT IS IMPOSSIBLE USING
-	 * GENERICS
 	 * 
 	 * @see http://en.wikipedia.org/wiki/Quicksort
 	 * @see http://stackoverflow.com/questions/2071929/generics-and-sorting-in-java
@@ -104,7 +90,6 @@ public abstract class FastQuickSort
 		T value;
 		int M = 23;
 		int i, j;
-
 		
 		if ((r - l) > M)
 		{
@@ -169,10 +154,6 @@ public abstract class FastQuickSort
 	 * Optimization idea came from the article on wikipedia, implementation is
 	 * based on "Algorithms" and "Algorithms in C++" books by Robert Sedgewick
 	 * 
-	 * NOTE: CURRENTLY SUPPORTS GENERICS FOR ARRAYS OF OBJECTS THAT IMPLEMENT
-	 * COMPARABLE. PRIMITIVE TYPES ARE NOT SUPPORTED AS IT IS IMPOSSIBLE USING
-	 * GENERICS
-	 * 
 	 * @see http://en.wikipedia.org/wiki/Quicksort
 	 * @see http://stackoverflow.com/questions/2071929/generics-and-sorting-in-java
 	 * 
@@ -188,7 +169,6 @@ public abstract class FastQuickSort
 		T value;
 		int M = 23;
 		int i, j;
-
 		
 		if ((r - l) > M)
 		{
@@ -262,14 +242,13 @@ public abstract class FastQuickSort
 		array[i] = array[j];
 		array[j] = temp;
 	}
-	
-	
+		
 	/**
 	 * Insertion sort, it is used internally by the quicksort algorithm to sort
 	 * the small partitions of values as insertion sort is faster when there is a
 	 * relatively small amount of values to sort
 	 * 
-	 * NOTE: Through repeated empirical testing of large random data sets using
+	 * @note Through repeated empirical testing of large random data sets using
 	 * insertion sort for small sorting operations improved performance by ~10% 
 	 * 
 	 * @param array The array to sort, must be objects that implement Comparable
@@ -295,14 +274,13 @@ public abstract class FastQuickSort
 			array[j] = value;
 	 	}
 	}
-	
-	
+		
 	/**
 	 * Insertion sort, it is used internally by the quicksort algorithm to sort
 	 * the small partitions of values as insertion sort is faster when there is a
 	 * relatively small amount of values to sort
 	 * 
-	 * NOTE: Through repeated empirical testing of large random data sets using
+	 * @note Through repeated empirical testing of large random data sets using
 	 * insertion sort for small sorting operations improved performance by ~10% 
 	 * 
 	 * @param array The array to sort, must be objects that implement Comparable
