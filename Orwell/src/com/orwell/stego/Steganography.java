@@ -31,8 +31,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.prng.RandomGenerator;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.prng.RandomGenerator;
 
 import com.orwell.util.DictionaryUtil;
 import com.orwell.util.FastQuickSort;

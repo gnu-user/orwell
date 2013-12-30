@@ -19,7 +19,7 @@
  */
 package com.orwell.crypto;
 
-import org.spongycastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.DataLengthException;
 
  /**
  * Information communicated by both parties involved in the key exchange before

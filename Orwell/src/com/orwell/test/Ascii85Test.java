@@ -27,7 +27,7 @@ import org.junit.Test;
 import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
-import org.spongycastle.util.encoders.Hex;
+import org.strippedcastle.util.encoders.Hex;
 
 import com.orwell.util.Ascii85;
 

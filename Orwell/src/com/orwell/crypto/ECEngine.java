@@ -19,19 +19,19 @@
  */
 package com.orwell.crypto;
 
-import org.spongycastle.crypto.BufferedBlockCipher;
-import org.spongycastle.crypto.CipherParameters;
-import org.spongycastle.crypto.Digest;
-import org.spongycastle.crypto.InvalidCipherTextException;
-import org.spongycastle.crypto.agreement.ECDHCBasicAgreement;
-import org.spongycastle.crypto.digests.SHA256Digest;
-import org.spongycastle.crypto.engines.AESEngine;
-import org.spongycastle.crypto.engines.IESEngine;
-import org.spongycastle.crypto.generators.KDF2BytesGenerator;
-import org.spongycastle.crypto.macs.HMac;
-import org.spongycastle.crypto.modes.SICBlockCipher;
-import org.spongycastle.crypto.params.IESParameters;
-import org.spongycastle.crypto.params.IESWithCipherParameters;
+import org.strippedcastle.crypto.BufferedBlockCipher;
+import org.strippedcastle.crypto.CipherParameters;
+import org.strippedcastle.crypto.Digest;
+import org.strippedcastle.crypto.InvalidCipherTextException;
+import org.strippedcastle.crypto.agreement.ECDHCBasicAgreement;
+import org.strippedcastle.crypto.digests.SHA256Digest;
+import org.strippedcastle.crypto.engines.AESEngine;
+import org.strippedcastle.crypto.engines.IESEngine;
+import org.strippedcastle.crypto.generators.KDF2BytesGenerator;
+import org.strippedcastle.crypto.macs.HMac;
+import org.strippedcastle.crypto.modes.SICBlockCipher;
+import org.strippedcastle.crypto.params.IESParameters;
+import org.strippedcastle.crypto.params.IESWithCipherParameters;
 
 /**
  * A wrapper class that simplifies the creation of the IESEngine and all of

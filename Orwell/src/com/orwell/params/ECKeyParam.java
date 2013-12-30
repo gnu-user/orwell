@@ -17,18 +17,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.orwell.crypto;
+package com.orwell.params;
 
 import java.math.BigInteger;
 import java.security.spec.KeySpec;
 import java.security.InvalidParameterException;
 
-import org.spongycastle.crypto.CipherParameters;
-import org.spongycastle.crypto.params.ECDomainParameters;
-import org.spongycastle.jce.spec.ECParameterSpec;
-import org.spongycastle.jce.ECNamedCurveTable;
-import org.spongycastle.math.ec.ECCurve;
-import org.spongycastle.math.ec.ECPoint;
+import org.strippedcastle.crypto.CipherParameters;
+import org.strippedcastle.crypto.params.ECDomainParameters;
+import org.strippedcastle.jce.spec.ECParameterSpec;
+import org.strippedcastle.jce.ECNamedCurveTable;
+import org.strippedcastle.math.ec.ECCurve;
+import org.strippedcastle.math.ec.ECPoint;
 
 /**
  * A class which acts as a wrapper for the Elliptic Curve specifications

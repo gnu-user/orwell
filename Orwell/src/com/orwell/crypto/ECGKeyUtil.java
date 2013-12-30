@@ -24,10 +24,12 @@ import android.util.Base64;
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
 
-import org.spongycastle.crypto.CipherParameters;
-import org.spongycastle.crypto.Digest;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.strippedcastle.crypto.CipherParameters;
+import org.strippedcastle.crypto.Digest;
+import org.strippedcastle.crypto.params.ECPrivateKeyParameters;
+import org.strippedcastle.crypto.params.ECPublicKeyParameters;
+
+import com.orwell.params.ECKeyParam;
 
 /**
  * A helpful key utility class which contains utility operations which are used

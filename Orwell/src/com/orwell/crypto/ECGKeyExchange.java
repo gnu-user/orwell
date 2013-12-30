@@ -19,10 +19,10 @@
  */
 package com.orwell.crypto;
 
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.Digest;
-import org.spongycastle.crypto.macs.HMac;
-import org.spongycastle.crypto.params.KeyParameter;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.Digest;
+import org.strippedcastle.crypto.macs.HMac;
+import org.strippedcastle.crypto.params.KeyParameter;
 
 /**
  * The Elliptic Curve Gillett (ECG) Exchange, provides support for signing

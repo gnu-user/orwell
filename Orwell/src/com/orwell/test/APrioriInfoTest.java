@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.spongycastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.DataLengthException;
 
 import com.orwell.crypto.APrioriInfo;
 

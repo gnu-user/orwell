@@ -17,10 +17,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.orwell.csprng;
+package com.orwell.params;
 
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.DerivationParameters;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.DerivationParameters;
 
  /**
  * Seed Derivative Function (SDF) parameter, takes the shared information 

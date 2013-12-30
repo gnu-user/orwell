@@ -30,22 +30,22 @@ import org.junit.Test;
 import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
-import org.spongycastle.crypto.CipherParameters;
-import org.spongycastle.crypto.InvalidCipherTextException;
-import org.spongycastle.crypto.digests.SHA256Digest;
-import org.spongycastle.crypto.engines.ISAACEngine;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.spongycastle.crypto.params.Nonce;
-import org.spongycastle.util.encoders.Hex;
+import org.strippedcastle.crypto.CipherParameters;
+import org.strippedcastle.crypto.InvalidCipherTextException;
+import org.strippedcastle.crypto.digests.SHA256Digest;
+import org.strippedcastle.crypto.engines.ISAACEngine;
+import org.strippedcastle.crypto.params.ECPrivateKeyParameters;
+import org.strippedcastle.crypto.params.ECPublicKeyParameters;
+import org.strippedcastle.util.encoders.Hex;
 
 import com.orwell.crypto.APrioriInfo;
 import com.orwell.crypto.ECEngine;
 import com.orwell.crypto.ECKey;
-import com.orwell.crypto.ECKeyParam;
 import com.orwell.csprng.ISAACRandomGenerator;
 import com.orwell.csprng.SDFGenerator;
-import com.orwell.csprng.SDFParameters;
+import com.orwell.params.ECKeyParam;
+import com.orwell.params.Nonce;
+import com.orwell.params.SDFParameters;
 
 @RunWith(Corollaries.class)
 public class ECEngineTest

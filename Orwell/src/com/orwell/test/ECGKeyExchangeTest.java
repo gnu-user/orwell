@@ -25,16 +25,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.contrib.assumes.*;
 import org.junit.runner.RunWith;
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.digests.SHA256Digest;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.digests.SHA256Digest;
+import org.strippedcastle.crypto.params.ECPrivateKeyParameters;
+import org.strippedcastle.crypto.params.ECPublicKeyParameters;
 
 import com.orwell.crypto.APrioriInfo;
 import com.orwell.crypto.ECGKeyExchange;
 import com.orwell.crypto.ECGKeyUtil;
 import com.orwell.crypto.ECKey;
-import com.orwell.crypto.ECKeyParam;
+import com.orwell.params.ECKeyParam;
 
 /**
  * TODO: There could be a lot more unit tests added for different

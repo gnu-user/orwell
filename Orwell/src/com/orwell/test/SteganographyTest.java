@@ -35,13 +35,13 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.digests.SHA256Digest;
-import org.spongycastle.crypto.engines.ISAACEngine;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.digests.SHA256Digest;
+import org.strippedcastle.crypto.engines.ISAACEngine;
 
 import com.orwell.csprng.ISAACRandomGenerator;
 import com.orwell.csprng.SDFGenerator;
-import com.orwell.csprng.SDFParameters;
+import com.orwell.params.SDFParameters;
 import com.orwell.stego.Steganography;
 import com.orwell.util.DictionaryUtil;
 

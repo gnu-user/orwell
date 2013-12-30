@@ -21,12 +21,12 @@ package com.orwell.crypto;
 
 import java.security.SecureRandom;
 
-import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.CipherParameters;
-import org.spongycastle.crypto.KeyGenerationParameters;
-import org.spongycastle.crypto.generators.ECKeyPairGenerator;
-import org.spongycastle.crypto.params.ECDomainParameters;
-import org.spongycastle.crypto.params.ECKeyGenerationParameters;
+import org.strippedcastle.crypto.AsymmetricCipherKeyPair;
+import org.strippedcastle.crypto.CipherParameters;
+import org.strippedcastle.crypto.KeyGenerationParameters;
+import org.strippedcastle.crypto.generators.ECKeyPairGenerator;
+import org.strippedcastle.crypto.params.ECDomainParameters;
+import org.strippedcastle.crypto.params.ECKeyGenerationParameters;
 
 /**
  * A wrapper class that simplifies the creation of a private/public Elliptic

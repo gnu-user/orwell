@@ -23,11 +23,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.params.ECPublicKeyParameters;
+import org.strippedcastle.crypto.params.ECPrivateKeyParameters;
+import org.strippedcastle.crypto.params.ECPublicKeyParameters;
 
 import com.orwell.crypto.ECKey;
-import com.orwell.crypto.ECKeyParam;
+import com.orwell.params.ECKeyParam;
 
 public class ECKeyTest
 {

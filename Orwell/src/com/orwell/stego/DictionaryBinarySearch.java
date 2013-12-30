@@ -23,7 +23,7 @@ import java.text.Collator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.spongycastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.DataLengthException;
 
 /**
  * A custom variant of binary search used for the steganography dictionaries which

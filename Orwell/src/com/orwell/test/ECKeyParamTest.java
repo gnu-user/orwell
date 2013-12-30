@@ -26,10 +26,10 @@ import java.security.InvalidParameterException;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.spongycastle.jce.ECNamedCurveTable;
-import org.spongycastle.jce.spec.ECParameterSpec;
+import org.strippedcastle.jce.ECNamedCurveTable;
+import org.strippedcastle.jce.spec.ECParameterSpec;
 
-import com.orwell.crypto.ECKeyParam;
+import com.orwell.params.ECKeyParam;
 
 public class ECKeyParamTest
 {

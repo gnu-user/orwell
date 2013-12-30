@@ -22,11 +22,11 @@ package com.orwell.csprng;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.StreamCipher;
-import org.spongycastle.crypto.engines.ISAACEngine;
-import org.spongycastle.crypto.params.KeyParameter;
-import org.spongycastle.crypto.prng.RandomGenerator;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.StreamCipher;
+import org.strippedcastle.crypto.engines.ISAACEngine;
+import org.strippedcastle.crypto.params.KeyParameter;
+import org.strippedcastle.crypto.prng.RandomGenerator;
 
 /**
  * ISAAC random number generator that generates random numbers using the

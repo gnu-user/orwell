@@ -19,10 +19,12 @@
  */
 package com.orwell.csprng;
 
-import org.spongycastle.crypto.DataLengthException;
-import org.spongycastle.crypto.DerivationFunction;
-import org.spongycastle.crypto.DerivationParameters;
-import org.spongycastle.crypto.Digest;
+import org.strippedcastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.DerivationFunction;
+import org.strippedcastle.crypto.DerivationParameters;
+import org.strippedcastle.crypto.Digest;
+
+import com.orwell.params.SDFParameters;
 
 /**
  * Seed Derivative Function (SDF) generator, derives a seed value to be used

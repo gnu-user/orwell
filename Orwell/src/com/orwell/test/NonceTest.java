@@ -24,10 +24,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.spongycastle.crypto.digests.SHA256Digest;
-import org.spongycastle.crypto.engines.ISAACEngine;
-import org.spongycastle.crypto.params.Nonce;
-import org.spongycastle.util.encoders.Hex;
+import org.strippedcastle.crypto.digests.SHA256Digest;
+import org.strippedcastle.crypto.engines.ISAACEngine;
+import org.strippedcastle.util.encoders.Hex;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,9 +34,10 @@ import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
 
-import com.orwell.csprng.ISAACRandomGenerator;
 import com.orwell.csprng.SDFGenerator;
-import com.orwell.csprng.SDFParameters;
+import com.orwell.params.SDFParameters;
+import com.orwell.params.Nonce;
+import com.orwell.prng.ISAACRandomGenerator;
 
 @RunWith(Corollaries.class)
 public class NonceTest

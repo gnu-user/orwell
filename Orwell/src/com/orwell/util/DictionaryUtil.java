@@ -23,7 +23,7 @@ import java.text.Collator;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import org.spongycastle.crypto.DataLengthException;
+import org.strippedcastle.crypto.DataLengthException;
 
 import com.orwell.stego.DictionaryBinarySearch;
 
