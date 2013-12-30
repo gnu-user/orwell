@@ -19,7 +19,8 @@
  */
 package com.orwell.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,12 +31,12 @@ import org.junit.Test;
 import org.junit.contrib.assumes.Assumes;
 import org.junit.contrib.assumes.Corollaries;
 import org.junit.runner.RunWith;
-import org.strippedcastle.crypto.CipherParameters;
 import org.strippedcastle.crypto.InvalidCipherTextException;
 import org.strippedcastle.crypto.digests.SHA256Digest;
 import org.strippedcastle.crypto.engines.ISAACEngine;
 import org.strippedcastle.crypto.params.ECPrivateKeyParameters;
 import org.strippedcastle.crypto.params.ECPublicKeyParameters;
+import org.strippedcastle.crypto.prng.RandomGenerator;
 import org.strippedcastle.util.encoders.Hex;
 
 import com.orwell.crypto.APrioriInfo;
@@ -72,8 +73,8 @@ public class ECEngineTest
     private ISAACRandomGenerator decCSPRNG;
 
     /* Nonce used for block cipher IV */
-    CipherParameters encNonce;
-    CipherParameters decNonce;
+    RandomGenerator encNonce;
+    RandomGenerator decNonce;
     
 	/* Sample text input for encryption/decryption tests */								
 	private static final String expASCIICharset = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";

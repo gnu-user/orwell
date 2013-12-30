@@ -37,7 +37,7 @@ import org.junit.runner.RunWith;
 import com.orwell.csprng.SDFGenerator;
 import com.orwell.params.SDFParameters;
 import com.orwell.params.Nonce;
-import com.orwell.prng.ISAACRandomGenerator;
+import com.orwell.csprng.ISAACRandomGenerator;
 
 @RunWith(Corollaries.class)
 public class NonceTest
