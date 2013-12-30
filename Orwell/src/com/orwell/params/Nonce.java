@@ -49,7 +49,6 @@ public class Nonce implements RandomGenerator
 	private static final int MAXCYCLES = 100000;
 	private int cycle = 0;
 	
-	
 	/**
 	 * Construct the nonce with a deterministic CSPRNG, at the moment only ISAAC
 	 * engine is supported, but in the future other CSPRNG such as ISAAC+ will 
@@ -73,7 +72,6 @@ public class Nonce implements RandomGenerator
 		
 		this.csprng = (ISAACRandomGenerator)csprng;			
 	}
-
 	
 	/**
 	 * Construct the nonce with a deterministic CSPRNG, at the moment only ISAAC
@@ -108,7 +106,6 @@ public class Nonce implements RandomGenerator
 		this.csprng = (ISAACRandomGenerator)csprng;
 		this.cycle = lastCycle;
 	}
-	
 	
 	/**
 	 * Initialize the CSPRNG used by the nonce with the seed value provided so
@@ -180,22 +177,7 @@ public class Nonce implements RandomGenerator
 			}
 		}
 	}
-	
-	
-	/**
-	 * Generates the next nonce and returns it
-	 * 
-	 * @return The nonce
-	 */
-	public byte[] nextNonce()
-	{
-		nonce = new byte[nonce.length];
-		csprng.nextBytes(nonce);
-		++cycle;
-		return nonce;
-	}
-	
-	
+
 	/**
 	 * Accesses the current nonce, you should always execute the nextNonce()
 	 * method before accessing a nonce to ensure that a unique nonce has been
@@ -207,7 +189,6 @@ public class Nonce implements RandomGenerator
 	{
 		return nonce;
 	}
-	
 	
 	/**
 	 * Get the current cycle, this is the number of nonces that have been
@@ -221,7 +202,6 @@ public class Nonce implements RandomGenerator
 	    return cycle;
 	}
 	
-	
 	/**
 	 * Resets the CSPRNG used by the None, after resetting the CSPRNG you must 
 	 * either re-initialize or re-seed it.
@@ -231,7 +211,6 @@ public class Nonce implements RandomGenerator
 	    csprng.reset();
 	}
 
-
 	/**
      * Re-seeds the CSPRNG with the seed value specified, if your are using
      * this Nonce in a cryptographic system with more than one user/system 
@@ -240,12 +219,12 @@ public class Nonce implements RandomGenerator
      * re-create this Nonce object, you must initialize the object with
      * this seed value to return to this state!
      * 
-     * @param seed The seed value for the CSPRNG, must be specified
+     * @param seed a byte array to be mixed into the generator's state.
      */
     @Override
-    public void addSeedMaterial(byte[] arg0)
+    public void addSeedMaterial(byte[] seed)
     {
-        csprng.addSeedMaterial(arg0);
+        csprng.addSeedMaterial(seed);
     }
 
     /**
@@ -256,27 +235,37 @@ public class Nonce implements RandomGenerator
      * re-create this Nonce object, you must initialize the object with
      * this seed value to return to this state!
      * 
-     * @param seed The seed value for the CSPRNG, must be specified
+     * @param seed a byte array to be mixed into the generator's state.
      */
     @Override
-    public void addSeedMaterial(long arg0)
+    public void addSeedMaterial(long seed)
     {
-        csprng.addSeedMaterial(arg0);
+        csprng.addSeedMaterial(seed);
     }
 
-
+    /**
+     * Generates the next nonce.
+     * 
+     * @param bytes byte array to be filled.
+     */
     @Override
-    public void nextBytes(byte[] arg0)
+    public void nextBytes(byte[] bytes)
     {
-        // TODO Auto-generated method stub
-        
+        csprng.nextBytes(bytes);
+        ++cycle;
     }
 
-
+    /**
+     * Generates the next nonce.
+     * 
+     * @param bytes byte array to be filled.
+     * @param start index to start filling at.
+     * @param len length of segment to fill.
+     */
     @Override
-    public void nextBytes(byte[] arg0, int arg1, int arg2)
+    public void nextBytes(byte[] bytes, int start, int len)
     {
-        // TODO Auto-generated method stub
-        
+        csprng.nextBytes(bytes, start, len);
+        ++cycle;
     }
 }
