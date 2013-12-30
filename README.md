@@ -39,4 +39,10 @@ Copyright (Really Copyleft)
 ---------------------------
 
 All of the source code in this repository, where the copyright notice is indicated in the source
-code, is licensed under the [GNU General Public License, Version 3](http://www.gnu.org/licenses/gpl.html)
+code, is licensed under the [GNU Lesser General Public License, Version 3](http://www.gnu.org/licenses/lgpl.html)
+
+
+Under the LGPLV3 you are free to link to and use the resultant library binary files in derived works
+that are licensed under terms of your choice. However, any changes to the library source code must
+remain under the same licensing terms of the GPLV3. Essentially, any changes or bug fixes that you 
+make to the library are much appreciated, submit a pull request or contact me!
