@@ -179,6 +179,19 @@ public class Nonce implements RandomGenerator
 	}
 
 	/**
+	 * Generates the next nonce and returns it
+	 * 
+	 * @return The nonce
+	 */
+	public byte[] nextNonce()
+	{
+    	nonce = new byte[nonce.length];
+    	csprng.nextBytes(nonce);
+        ++cycle;
+        return nonce;
+	}
+	
+	/**
 	 * Accesses the current nonce, you should always execute the nextNonce()
 	 * method before accessing a nonce to ensure that a unique nonce has been
 	 * generated.
@@ -252,6 +265,7 @@ public class Nonce implements RandomGenerator
     public void nextBytes(byte[] bytes)
     {
         csprng.nextBytes(bytes);
+        nonce = bytes.clone();
         ++cycle;
     }
 
@@ -266,6 +280,7 @@ public class Nonce implements RandomGenerator
     public void nextBytes(byte[] bytes, int start, int len)
     {
         csprng.nextBytes(bytes, start, len);
+        nonce = bytes.clone();
         ++cycle;
     }
 }
