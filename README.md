@@ -14,9 +14,11 @@ privacy we wanted.
 Background
 ------------------------------
 
-Orwell uses the excellent [Bouncy Castle](http://www.bouncycastle.org/java.html) library
-as a basis for much of the functionality provided, with enhancements made to improve the 
-security of the block ciphers used.
+Orwell uses [Stripped Castle](https://github.com/gnu-user/strippedcastle), which is 
+a modified version of the the excellent [Bouncy Castle](http://www.bouncycastle.org/java.html) 
+library as a basis for much of the functionality provided. Stripped Castle is the same as
+Bouncy Castle, just with slight enhancements made to support using Bouncy Castle on Android and
+to improve the security of the block ciphers used.
 
 
 Security
@@ -27,6 +29,10 @@ key exchange protocol uses a unique signing scheme based on the use of *a priori
 information to facilitate signing and verifying the keys, rather than depending on a 
 centralized Certificate Authority.
 
+After the key exchange a hybrid encryption scheme is used known as Integrated Encryption
+Scheme ([IES](http://en.wikipedia.org/wiki/Integrated_Encryption_Scheme)) to facilitate 
+sending and receiving encrypted messages by using the Elliptic Curves and *a priori* 
+information in order to derive the symmetric keys that are used. 
 
 
 Copyright (Really Copyleft)
