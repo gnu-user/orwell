@@ -32,6 +32,7 @@ import org.strippedcastle.crypto.macs.HMac;
 import org.strippedcastle.crypto.modes.SICBlockCipher;
 import org.strippedcastle.crypto.params.IESParameters;
 import org.strippedcastle.crypto.params.IESWithCipherParameters;
+import org.strippedcastle.crypto.prng.RandomGenerator;
 
 /**
  * A wrapper class that simplifies the creation of the IESEngine and all of
@@ -71,7 +72,7 @@ public class ECEngine
 	 * @param sharedInfo the shared information exchanged by users a priori
 	 * 
 	 */
-	public ECEngine(CipherParameters nonce, APrioriInfo sharedInfo)
+	public ECEngine(RandomGenerator nonce, APrioriInfo sharedInfo)
 	{	    
 	    this.cipher = new BufferedBlockCipher(new SICBlockCipher(new AESEngine()));
 	    
@@ -101,7 +102,7 @@ public class ECEngine
      * it to take the BufferedBlockCipher and simply use that... BufferedBlockCipher
      * has multiple subclasses which could be used such as CTSBlockCipher
      */
-    public ECEngine(BufferedBlockCipher cipher, CipherParameters nonce, APrioriInfo sharedInfo)
+    public ECEngine(BufferedBlockCipher cipher, RandomGenerator nonce, APrioriInfo sharedInfo)
     {
         this.cipher = cipher;
         
@@ -127,7 +128,7 @@ public class ECEngine
 	 * @param digest The digest to use for KDF/HMAC such as SHA256/MD5
 	 * @param sharedInfo the shared information exchanged by users a priori
 	 */
-	public ECEngine(BufferedBlockCipher cipher, CipherParameters nonce, Digest digest, APrioriInfo sharedInfo)
+	public ECEngine(BufferedBlockCipher cipher, RandomGenerator nonce, Digest digest, APrioriInfo sharedInfo)
 	{
 		this.cipher = cipher;
 		
