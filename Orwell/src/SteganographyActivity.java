@@ -1,34 +1,33 @@
-/** 
+/**
  * Orwell -- A security library for the pathologically paranoid
  *
- * Copyright (C) 2013, Jonathan Gillett
- * All rights reserved.
+ * Copyright (C) 2013, Jonathan Gillett, All rights reserved.
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * This library is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.spongycastle.crypto.digests.SHA256Digest;
-import org.spongycastle.crypto.engines.ISAACEngine;
-import org.spongycastle.crypto.params.KeyParameter;
-import org.spongycastle.crypto.prng.RandomGenerator;
-import org.spongycastle.crypto.StreamCipher;
-import org.spongycastle.jce.provider.BouncyCastleProvider;
-import org.spongycastle.util.encoders.Hex;
+import org.strippedcastle.crypto.digests.SHA256Digest;
+import org.strippedcastle.crypto.engines.ISAACEngine;
+import org.strippedcastle.crypto.params.KeyParameter;
+import org.strippedcastle.crypto.prng.RandomGenerator;
+import org.strippedcastle.crypto.StreamCipher;
+import org.strippedcastle.jce.provider.BouncyCastleProvider;
+import org.strippedcastle.util.encoders.Hex;
 
 import com.orwell.csprng.ISAACRandomGenerator;
 import com.orwell.csprng.SDFGenerator;
-import com.orwell.csprng.SDFParameters;
+import com.orwell.params.SDFParameters;
 import com.orwell.stego.Steganography;
 import com.orwell.util.FastQuickSort;
 import com.orwell.util.HashTable;
@@ -50,6 +49,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+
+
 /**
  * 
  * @title	Steganography Research and Proof of Concept
@@ -157,78 +158,7 @@ public class SteganographyActivity
 	}
     
 	
-	/**
-	 * Simple function to test that the random number generators generate the
-	 * same sequence of values give a shared seed from the SDF
-	 */
-	public static void randomSequenceTest(byte[] shared_seed)
-	{
-		boolean sequenceMatch = true;
-		
-		List<BigInteger> randomSequence1 = new ArrayList();
-		List<BigInteger> randomSequence2 = new ArrayList();
-		
-		/*
-		 * Simulate two separate users generating a sequence of random numbers using 
-		 * a shared seed and the ISAAC stream cipher as the PRNG
-		 */
-		ISAACRandomGenerator isaac1 = new ISAACRandomGenerator(new ISAACEngine());
-		ISAACRandomGenerator isaac2 = new ISAACRandomGenerator(new ISAACEngine());
-		
-		isaac1.init(shared_seed);
-		isaac2.init(shared_seed);
-		
-		/*
-		 * Generate two separate sequences of random data and verify the two sequences are identical
-		 */
-		for (int i = 0; i < NUMBER_RANDOM_ELEMENTS; ++i)
-		{
-			randomSequence1.add(isaac1.nextBigInteger());
-		}
-		
-		for (int j = 0; j < NUMBER_RANDOM_ELEMENTS; ++j)
-		{
-			randomSequence2.add(isaac2.nextBigInteger());
-		}
 
-		
-		/*
-		 * Verify that the two sequences are equal
-		 */
-		for (int idx  = 0; idx < randomSequence1.size(); ++idx)
-		{
-			// Have to cast as int otherwise it will always fail as Java arraylist uses Integer object
-			// and the comparison is checking if the reference is to the same object
-			if (randomSequence1.get(idx).compareTo(randomSequence2.get(idx)) != 0)
-			{
-				System.out.println(randomSequence1.get(idx) + " and " + randomSequence2.get(idx) +
-						" do not match!");
-				sequenceMatch = false;
-			}
-		}
-		
-		if (sequenceMatch)
-		{
-			System.out.println("The sequences match, here is the list of random data in the sequence:\n");
-			/*for (BigInteger randomNum : randomSequence1)
-			{
-				System.out.println(randomNum);
-			}*/
-		}
-		else
-		{
-			System.out.println("The sequences DO NOT MATCH, here is the list of random data are space seperated for each " +
-					"value in the two sequences, each newline is the next pair of values from two sequences:\n");
-			
-			for (int idx = 0; idx < randomSequence1.size(); ++idx)
-			{
-				System.out.println(randomSequence1.get(idx) + " " + randomSequence2.get(idx));
-			}
-		}
-		
-		System.out.println("LENGTH: " + shared_seed.length);
-		System.out.println("SEED: " + new String(Hex.encode(shared_seed)));
-	}
 	
 	
 	/**
@@ -305,47 +235,7 @@ public class SteganographyActivity
 		
 		System.out.println(result);
 		//System.out.println(new String(subTest));
-		//System.out.println(new BigInteger(subTest).intValue());
-		
-		
-		/*
-		 * Simulate a sequence of random strings to sort with FastQuickSort 
-		 */
-		
-		// Define the collator locale and parameters for sorting strings
-		//Collator collator = Collator.getInstance(Locale.US);
-		
-		/* Set the collator decomposition parameters and comparison strength
-		 * For more detail on the different decompositions and comparison strengths
-		 * 
-		 * @see http://docs.oracle.com/javase/1.5.0/docs/api/java/text/Collator.html
-		 */
-		//collator.setDecomposition(Collator.CANONICAL_DECOMPOSITION);
-		//collator.setStrength(Collator.PRIMARY);
-		
-		
-		// Define a strict collator for sorting and matching words in the dictionary
-		Collator strictCollator = Collator.getInstance(Locale.US);
-		
-		/* Set the collator decomposition parameters and comparison strength
-		 * For more detail on the different decompositions and comparison strengths
-		 * 
-		 * @see http://docs.oracle.com/javase/1.5.0/docs/api/java/text/Collator.html
-		 */
-		strictCollator.setDecomposition(Collator.FULL_DECOMPOSITION);
-		strictCollator.setStrength(Collator.IDENTICAL);
-		
-		
-		
-		
-		/*
-		 * Simulate an unsorted collection of Collation keys for the strings to be sorted 
-		 
-		for (int i = 0; i < masterDictionary.length; ++i)
-		{
-			unsortedKeys[i] = collator.getCollationKey(masterDictionary[i]);
-		}*/
-		
+		//System.out.println(new BigInteger(subTest).intValue());		
 		
 		/*
 		 * Quick test of the hashtable functions and miller-rabin primality tests
@@ -376,7 +266,7 @@ public class SteganographyActivity
 		endTime = System.currentTimeMillis();
 		
 		// Display results
-		for (int i  = 0; i < uniqueDictionary.length - 1; ++i)
+		for (int i  = 0; i < uniqueDictionary.length; ++i)
 		{
 			System.out.println(uniqueDictionary[i]);
 
